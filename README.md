@@ -1330,7 +1330,7 @@ ha_cluster_resource_primitives:
           - name: devices
             value: "{{ mpath_devices }}"  #/dev/mapper/mpathd,/dev/mapper/mpathe,/dev/mapper/mpathf
           - name: pcmk_host_map
-            value: "{{ mpath_device_pcmk }}"  #pddhqwlua01.cce3.gpc:10;pddhqwlua02.cce3.gpc:11
+            value: "{{ mpath_device_pcmk }}"  #hosta.domain.com:10;hostb.domain.com:11
     meta_attrs:
       - attrs:
           - name: provides
@@ -1474,6 +1474,297 @@ ha_cluster_resource_clones:
 
 ### Defined in `/home/ansible/ansible/fs_resources.yml`
 
+SoCo - This is where we define cluster resources for the second set of resources, focused on filesystems
+
+In addition to what's already defined in `/home/ansible/ansible/lvmlockd_dlm.yml`, `/home/ansible/ansible/fs_resources.yml` includes the following variables:
+
+```yaml
+ha_cluster_resource_primitives: 
+  - id: home_oua_lv
+    agent: 'ocf:heartbeat:LVM-activate'
+    instance_attrs:
+      - attrs:
+          - name: activation_mode
+            value: shared
+          - name: lvname
+            value: home_oua_lv
+          - name: vg_access_mode
+            value: lvmlockd
+          - name: vgname
+            value: cldata_vg_01
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: home_oua_lv-monitor-interval-30s
+          - name: interval
+            value: '30s'
+          - name: timeout
+            value: '90s'
+      - action: start
+        attrs:
+          - name: id
+            value: home_oua_lv-start-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '90s'
+      - action: stop
+        attrs:
+          - name: id
+            value: home_oua_lv-stop-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '90s'
+  - id: home_oma_lv
+    agent: 'ocf:heartbeat:LVM-activate'
+    instance_attrs:
+      - attrs:
+          - name: activation_mode
+            value: shared
+          - name: lvname
+            value: home_oma_lv
+          - name: vg_access_mode
+            value: lvmlockd
+          - name: vgname
+            value: cldata_vg_02
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: home_oma_lv-monitor-interval-30s
+          - name: interval
+            value: '30s'
+          - name: timeout
+            value: '90s'
+      - action: start
+        attrs:
+          - name: id
+            value: home_oma_lv-start-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '90s'
+      - action: stop
+        attrs:
+          - name: id
+            value: home_oma_lv-stop-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '90s'
+  - id: home_flex_lv
+    agent: 'ocf:heartbeat:LVM-activate'
+    instance_attrs:
+      - attrs:
+          - name: activation_mode
+            value: shared
+          - name: lvname
+            value: home_flex_lv
+          - name: vg_access_mode
+            value: lvmlockd
+          - name: vgname
+            value: cldata_vg_03
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: home_flex_lv-monitor-interval-30s
+          - name: interval
+            value: '30s'
+          - name: timeout
+            value: '90s'
+      - action: start
+        attrs:
+          - name: id
+            value: home_flex_lv-start-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '90s'
+      - action: stop
+        attrs:
+          - name: id
+            value: home_flex_lv-stop-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '90s'
+  - id: home_oua_res
+    agent: 'ocf:heartbeat:Filesystem'
+    instance_attrs:
+      - attrs:
+          - name: device
+            value: '/dev/cldata_vg_01/home_oua_lv'
+          - name: directory
+            value: '/home_oua'
+          - name: fstype
+            value: gfs2
+          - name: options
+            value: noatime
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: home_oua_res-monitor-interval-10s
+          - name: interval
+            value: '10s'
+          - name: on-fail
+            value: fence
+      - action: start
+        attrs:
+          - name: id
+            value: home_oua_res-start-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '60s'
+      - action: stop
+        attrs:
+          - name: id
+            value: home_oua_res-stop-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '60s'
+  - id: home_oma_res
+    agent: 'ocf:heartbeat:Filesystem'
+    instance_attrs:
+      - attrs:
+          - name: device
+            value: '/dev/cldata_vg_02/home_oma_lv'
+          - name: directory
+            value: '/home_oma'
+          - name: fstype
+            value: gfs2
+          - name: options
+            value: noatime
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: home_oma_res-monitor-interval-10s
+          - name: interval
+            value: '10s'
+          - name: on-fail
+            value: fence
+      - action: start
+        attrs:
+          - name: id
+            value: home_oma_res-start-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '60s'
+      - action: stop
+        attrs:
+          - name: id
+            value: home_oma_res-stop-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '60s'
+  - id: home_flex_res
+    agent: 'ocf:heartbeat:Filesystem'
+    instance_attrs:
+      - attrs:
+          - name: device
+            value: '/dev/cldata_vg_03/home_flex_lv'
+          - name: directory
+            value: '/home_flex'
+          - name: fstype
+            value: gfs2
+          - name: options
+            value: noatime
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: home_flex_res-monitor-interval-10s
+          - name: interval
+            value: '10s'
+          - name: on-fail
+            value: fence
+      - action: start
+        attrs:
+          - name: id
+            value: home_flex_res-start-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '60s'
+      - action: stop
+        attrs:
+          - name: id
+            value: home_flex_res-stop-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '60s'
+
+ha_cluster_resource_groups:
+      - id: cldata_vg_01
+        resource_ids:
+          - home_oua_lv
+          - home_oua_res
+      - id: cldata_vg_02
+        resource_ids:
+          - home_oma_lv
+          - home_oma_res
+      - id: cldata_vg_03
+        resource_ids:
+          - home_flex_lv
+          - home_flex_res
+
+ha_cluster_resource_clones:
+  - resource_id: cldata_vg_01
+    meta_attrs:
+      - attrs:
+          - name: interleave
+            value: true
+  - resource_id: cldata_vg_02
+    meta_attrs:
+      - attrs:
+          - name: interleave
+            value: true
+  - resource_id: cldata_vg_03
+    meta_attrs:
+      - attrs:
+          - name: interleave
+            value: true
+
+ha_cluster_constraints_colocation:
+  - resource_sets:
+      - resource_ids:
+          - cldata_vg_01-clone
+          - cldata_vg_02-clone
+          - cldata_vg_03-clone
+          - locking-clone
+
+ha_cluster_constraints_order:
+  - resource_first:
+      id: locking-clone
+    resource_then:
+      id: cldata_vg_01-clone
+  - resource_first:
+      id: locking-clone
+    resource_then:
+      id: cldata_vg_02-clone
+  - resource_first:
+      id: locking-clone
+    resource_then:
+      id: cldata_vg_03-clone
+```
+
+## SoCo - Customized tasks files
+
+* pcs-auth-quorum.yml
+* pcs-auth-pcs-0.10-quorum.yml
+* quorum_services.yml
+
+### pcs-auth-quorum.yml
+
 
 
 ## Example Playbook
@@ -1506,7 +1797,7 @@ ha_cluster_resource_clones:
   tags: prep_storage
 
 - name: configure storage (select & validate LUNs)
-  hosts: pddhqwlua01.cce3.gpc
+  hosts: hosta.domain.compddhqwlua02.cce3.gpc
   vars:
     ha_cluster_cluster_name: "{{ cluster_name }}"
     select_LUNs: yes 
@@ -1527,10 +1818,10 @@ ha_cluster_resource_clones:
     ha_cluster_hacluster_password: "{{ cluster_password }}"
     __ha_cluster_qdevice_in_use: yes
     mpath_devices: /dev/mapper/mpathd,/dev/mapper/mpathe,/dev/mapper/mpathf
-    mpath_device_pcmk: "pddhqwlua01.cce3.gpc:10;pddhqwlua02.cce3.gpc:11"
-    nfs_server_monitor_interval: flpddhqwlua_nfsserver-monitor-interval-60
-    nfs_server_start_interval: flpddhqwlua_nfsserver-start-interval-0s
-    nfs_server_stop_interval: flpddhqwlua_nfsserver-stop-interval-0s
+    mpath_device_pcmk: "hosta.domain.com:10;hostb.domain.com:11"
+    nfs_server_monitor_interval: example_nfsserver-monitor-interval-60
+    nfs_server_start_interval: example_nfsserver-start-interval-0s
+    nfs_server_stop_interval: example_nfsserver-stop-interval-0s
     floating_ip: 10.5.137.144
   vars_files: 
     - /home/ansible/ansible/lvmlockd_dlm.yml
@@ -1558,10 +1849,10 @@ ha_cluster_resource_clones:
     ha_cluster_hacluster_password: "{{ cluster_password }}"
     __ha_cluster_qdevice_in_use: yes
     mpath_devices: /dev/mapper/mpathd,/dev/mapper/mpathe,/dev/mapper/mpathf
-    mpath_device_pcmk: "pddhqwlua01.cce3.gpc:10;pddhqwlua02.cce3.gpc:11"
-    nfs_server_monitor_interval: flpddhqwlua_nfsserver-monitor-interval-60
-    nfs_server_start_interval: flpddhqwlua_nfsserver-start-interval-0s
-    nfs_server_stop_interval: flpddhqwlua_nfsserver-stop-interval-0s
+    mpath_device_pcmk: "hosta.domain.com:10;hostb.domain.com:11"
+    nfs_server_monitor_interval: example_nfsserver-monitor-interval-60
+    nfs_server_start_interval: example_nfsserver-start-interval-0s
+    nfs_server_stop_interval: example_nfsserver-stop-interval-0s
     floating_ip: 10.5.137.144
   vars_files: 
     - /home/ansible/ansible/fs_resources.yml

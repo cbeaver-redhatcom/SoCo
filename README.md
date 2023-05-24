@@ -1506,7 +1506,7 @@ ha_cluster_resource_clones:
   tags: prep_storage
 
 - name: configure storage (select & validate LUNs)
-  hosts: pddhqwlua01.cce3.gpc
+  hosts: nodea.example.com
   vars:
     ha_cluster_cluster_name: "{{ cluster_name }}"
     select_LUNs: yes 

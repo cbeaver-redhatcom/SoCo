@@ -860,7 +860,7 @@ all:
         corosync_addresses:
           - 192.168.1.11
           - 192.168.2.11
-      mp_key: "10"
+      mp_key: "0x10"
     node2:
       ha_cluster:
         node_name: node-B
@@ -868,7 +868,7 @@ all:
         corosync_addresses:
           - 192.168.1.12
           - 192.168.2.12
-      mp_key: "11"
+      mp_key: "0x11"
 ```
 
 * `node_name` - the name of a node in a cluster
@@ -1506,7 +1506,7 @@ ha_cluster_resource_clones:
   tags: prep_storage
 
 - name: configure storage (select & validate LUNs)
-  hosts: nodea.example.com
+  hosts: pddhqwlua01.cce3.gpc
   vars:
     ha_cluster_cluster_name: "{{ cluster_name }}"
     select_LUNs: yes 
@@ -1526,12 +1526,12 @@ ha_cluster_resource_clones:
     ha_cluster_cluster_name: "{{ cluster_name }}"
     ha_cluster_hacluster_password: "{{ cluster_password }}"
     __ha_cluster_qdevice_in_use: yes
-    mpath_devices: /dev/mapper/mpatha,/dev/mapper/mpathb,/dev/mapper/mpathc
-    mpath_device_pcmk: "www.example.com:10;www.example.com:11"
-    nfs_server_monitor_interval: example_nfsserver-monitor-interval-60
-    nfs_server_start_interval: example_nfsserver-start-interval-0s
-    nfs_server_stop_interval: example_nfsserver-stop-interval-0s
-    floating_ip: 10.1.2.3
+    mpath_devices: /dev/mapper/mpathd,/dev/mapper/mpathe,/dev/mapper/mpathf
+    mpath_device_pcmk: "pddhqwlua01.cce3.gpc:10;pddhqwlua02.cce3.gpc:11"
+    nfs_server_monitor_interval: flpddhqwlua_nfsserver-monitor-interval-60
+    nfs_server_start_interval: flpddhqwlua_nfsserver-start-interval-0s
+    nfs_server_stop_interval: flpddhqwlua_nfsserver-stop-interval-0s
+    floating_ip: 10.5.137.144
   vars_files: 
     - /home/ansible/ansible/lvmlockd_dlm.yml
     - /home/ansible/ansible/secret.yml  
@@ -1557,12 +1557,12 @@ ha_cluster_resource_clones:
     ha_cluster_cluster_name: "{{ cluster_name }}"
     ha_cluster_hacluster_password: "{{ cluster_password }}"
     __ha_cluster_qdevice_in_use: yes
-    mpath_devices: /dev/mapper/mpatha,/dev/mapper/mpathb,/dev/mapper/mpathc
-    mpath_device_pcmk: "www.example.com:10;www.example.com:11"
-    nfs_server_monitor_interval: example_nfsserver-monitor-interval-60
-    nfs_server_start_interval: example_nfsserver-start-interval-0s
-    nfs_server_stop_interval: example_nfsserver-stop-interval-0s
-    floating_ip: 10.1.2.3
+    mpath_devices: /dev/mapper/mpathd,/dev/mapper/mpathe,/dev/mapper/mpathf
+    mpath_device_pcmk: "pddhqwlua01.cce3.gpc:10;pddhqwlua02.cce3.gpc:11"
+    nfs_server_monitor_interval: flpddhqwlua_nfsserver-monitor-interval-60
+    nfs_server_start_interval: flpddhqwlua_nfsserver-start-interval-0s
+    nfs_server_stop_interval: flpddhqwlua_nfsserver-stop-interval-0s
+    floating_ip: 10.5.137.144
   vars_files: 
     - /home/ansible/ansible/fs_resources.yml
     - /home/ansible/ansible/secret.yml

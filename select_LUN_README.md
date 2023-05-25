@@ -6,9 +6,9 @@ An Ansible role for managing statically or dynamically selected storage devices 
 
 This role relies on the following variables set when running cluster deployment playbooks:
 
-* __500GB_LUN
-* __150GB_LUN_1
-* __150GB_LUN_2
+* `__500GB_LUN`
+* `__150GB_LUN_1`
+* `__150GB_LUN_2`
 
 Three tasks are executed in `tasks/main.yml`:
 

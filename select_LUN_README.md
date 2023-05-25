@@ -1,6 +1,6 @@
 # select_LUN
 
-An Ansible role for managing dynamically selecting storage devices for use in cluster deployment at Southern Company.
+An Ansible role for managing statically or dynamically selected storage devices for use in cluster deployment at Southern Company.
 
 ## Overview
 

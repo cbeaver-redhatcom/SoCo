@@ -1765,7 +1765,43 @@ ha_cluster_constraints_order:
 
 ### pcs-auth-quorum.yml
 
+This tasks file runs against cluster nodes and checks authentication status of the quorum server.  If not already authenticated, pcs-auth-pcs-0.10-quorum.yml runs to authenticate the quorum server.  Once authentication has been verified, the file uses the command module to add the quorum device to the cluster like so:
 
+```yaml
+pcs quorum device add model net algorithm=ffsplit host={% for node in groups.quorum_node %}{{ hostvars[node].ha_cluster.node_name | quote }}{% endfor %}
+```
+
+### pcs-auth-pcs-0.10-quorum.yml
+
+This tasks file executes when the quorum server shows as not authenticated by `pcs-auth-quorum.yml`.  After authorizing the quorum device, just like in `pcs-auth-quorum.yml`, we use the command module to add the quorum server to the cluster.
+
+```yaml
+---
+- name: Pcs auth using pcs-0.10
+  command:
+    # Always auth all nodes to prevent possible corner cases with synchronizing
+    # pcs auth tokens in the cluster when not all nodes are auth-ed.
+    cmd: >
+      pcs host auth -u hacluster --
+      {% for node in groups.quorum_node %}
+        {{ hostvars[node].ha_cluster.node_name | quote }}
+        {% if hostvars[node].ha_cluster.pcs_address | default("") %}
+          addr={{ hostvars[node].ha_cluster.pcs_address | quote }}
+        {% endif %}
+      {% endfor %}
+    stdin: "{{ ha_cluster_hacluster_password }}"
+  run_once: yes
+  changed_when: yes
+
+- name: Add quorum device to cluster
+  command:
+    cmd: >
+      pcs quorum device add model net algorithm=ffsplit host={% for node in groups.quorum_node %}{{ hostvars[node].ha_cluster.node_name | quote }}{% endfor %}
+```
+
+### quorum-services.yml
+
+This tasks file simply starts and enables pcsd.  Also, it checks the status of QNet daemon on the quorum device.  If the command `pcs qdevice status net` fails, the code starts the QNet daemon on the quorum device.
 
 ## Example Playbook
 
@@ -1797,7 +1833,7 @@ ha_cluster_constraints_order:
   tags: prep_storage
 
 - name: configure storage (select & validate LUNs)
-  hosts: hosta.domain.compddhqwlua02.cce3.gpc
+  hosts: hosta.domain.com
   vars:
     ha_cluster_cluster_name: "{{ cluster_name }}"
     select_LUNs: yes 
@@ -1822,7 +1858,7 @@ ha_cluster_constraints_order:
     nfs_server_monitor_interval: example_nfsserver-monitor-interval-60
     nfs_server_start_interval: example_nfsserver-start-interval-0s
     nfs_server_stop_interval: example_nfsserver-stop-interval-0s
-    floating_ip: 10.5.137.144
+    floating_ip: 10.1.2.3
   vars_files: 
     - /home/ansible/ansible/lvmlockd_dlm.yml
     - /home/ansible/ansible/secret.yml  
@@ -1853,7 +1889,7 @@ ha_cluster_constraints_order:
     nfs_server_monitor_interval: example_nfsserver-monitor-interval-60
     nfs_server_start_interval: example_nfsserver-start-interval-0s
     nfs_server_stop_interval: example_nfsserver-stop-interval-0s
-    floating_ip: 10.5.137.144
+    floating_ip: 10.1.2.3
   vars_files: 
     - /home/ansible/ansible/fs_resources.yml
     - /home/ansible/ansible/secret.yml

@@ -843,6 +843,28 @@ SoCo -- Package to be installed on cluster node (used in tasks/check-and-prepare
 
 SoCo -- Package to be installed on quorum device (used in tasks/check-and-prepare-role-variables.yml, line 66)
 
+### Defined in `vars/main.yml`
+
+SoCo - The following variables are modified to fit Southern Company needs:
+
+```yaml
+__ha_cluster_fullstack_node_packages:
+  - corosync
+  - libknet1-plugins-all
+  - resource-agents
+  - pacemaker
+  - pcs
+  - watchdog # installing watchdog to enable fencing to start on boot - SoCo.
+  - openssl  # used in the role for generating preshared keys
+
+__ha_cluster_services:
+  - corosync
+  - corosync-qdevice
+  - pacemaker
+  - watchdog # added for Southern Company engagement - SoCo
+  - lvmlockd # added for Southern Company engagement - SoCo
+```
+
 ### Inventory
 
 #### Nodes' names and addresses

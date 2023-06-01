@@ -1912,6 +1912,14 @@ This tasks file simply starts and enables pcsd.  Also, it checks the status of Q
     nfs_server_start_interval: example_nfsserver-start-interval-0s
     nfs_server_stop_interval: example_nfsserver-stop-interval-0s
     floating_ip: 10.1.2.3
+    ha_cluster_quorum:
+      device:
+        model: net
+        model_options:
+          - name: host
+            value: quorum_hostname_short
+          - name: algorithm
+            value: ffsplit
   vars_files: 
     - /home/ansible/ansible/fs_resources.yml
     - /home/ansible/ansible/secret.yml
@@ -1920,6 +1928,18 @@ This tasks file simply starts and enables pcsd.  Also, it checks the status of Q
     - rhel-system-roles.ha_cluster_modified
   tags: deploy_shared_filesystems
 ```
+## Final changes notes
+
+Successful deployments rely on correct order of deployment of resources and lvm configuration.  Correct order looks like this:
+
+* Deploy quorum server
+* Deploy first set of resources (dlm,lvmlockd,mpath,nfs,floating_ip)
+* Select LUNs and initialize LVM, create gfs2 file systems
+* Deploy all resources (dlm,lvmlockd,mpath,nfs,floating_ip,file system resources, all constraints, all groups, all clones)
+* Last deployment play also authorizes and joins the quorum server to the cluster
+
+`dlm` and `lvmlockd` resources need to be running during VG creation, since we're using the `--shared` flag.
+Reboot all cluster nodes after deployment finishes in order to get all resources in the `Started` status on all cluster nodes.
 
 ## License
 

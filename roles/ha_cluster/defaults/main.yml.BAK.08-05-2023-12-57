@@ -1,0 +1,119 @@
+# SPDX-License-Identifier: MIT
+---
+ha_cluster_enable_repos: yes
+
+ha_cluster_cluster_present: yes
+
+ha_cluster_start_on_boot: yes
+
+ha_cluster_extra_packages: []
+
+ha_cluster_fence_agent_packages:
+  - fence-agents-all
+  - fence-virt
+
+ha_cluster_hacluster_password: ""
+ha_cluster_regenerate_keys: no
+ha_cluster_corosync_key_src: null
+ha_cluster_pacemaker_key_src: null
+ha_cluster_fence_virt_key_src: null
+ha_cluster_pcsd_public_key_src: null
+ha_cluster_pcsd_private_key_src: null
+
+ha_cluster_cluster_name: my-cluster
+
+ha_cluster_transport: {}
+ha_cluster_totem: {}
+ha_cluster_quorum: {}
+
+ha_cluster_sbd_enabled: no
+ha_cluster_sbd_options: []
+
+ha_cluster_pcs_permission_list:
+  - type: group
+    name: haclient
+    allow_list:
+      - grant
+      - read
+      - write
+
+ha_cluster_cluster_properties: []
+
+ha_cluster_resource_primitives:  
+  - id: mpath
+    agent: 'stonith:fence_mpath'
+    instance_attrs:
+      - attrs:
+          - name: devices
+            value: /dev/mapper/mpathb,/dev/mapper/mpathc,/dev/mapper/mpathd
+          - name: pcmk_host_map
+            value: lhdvatm170pr01.cce3.gpc:8;lhdvatm170pr02.cce3.gpc:9
+    meta_attrs:
+      - attrs:
+          - name: provides
+            value: unfencing
+    operations:
+      - action: monitor
+        attrs:
+          - name: interval
+            value: '60s'
+  - id: flhdvatm170pr01_ip
+    agent: 'ocf:heartbeat:IPaddr'
+    instance_attrs:
+      - attrs: 
+          - name: ip 
+            value: 10.5.136.34
+    operations:
+      - action: monitor 
+        attrs: 
+          - name: interval 
+            value: '10s'
+          - name: timeout 
+            value: '20s'
+      - action: start 
+        attrs:
+          - name: interval 
+            value: '0s'
+          - name: timeout 
+            value: '20s'
+      - action: stop 
+        attrs:
+          - name: interval
+            value: '0s' 
+          - name: timeout
+            value: '20s'
+  - id: flhdvatm170pr01_nfsserver
+    agent: 'service:nfs-server'
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: flhdvatm170pr01_nfsserver-monitor-interval-60
+          - name: interval
+            value: 60
+          - name: timeout
+            value: 100
+      - action: start
+        attrs:
+          - name: id
+            value: flhdvatm170pr01_nfsserver-start-interval-0s
+          - name: interval
+            value: 0s
+          - name: timeout
+            value: 100
+      - action: stop
+        attrs:
+          - name: id
+            value: flhdvatm170pr01_nfsserver-stop-interval-0s
+          - name: interval
+            value: 0s
+          - name: timeout
+            value: 100
+ha_cluster_resource_groups: []
+ha_cluster_resource_clones: []
+ha_cluster_resource_bundles: []
+
+ha_cluster_constraints_location: []
+ha_cluster_constraints_colocation: []
+ha_cluster_constraints_order: []
+ha_cluster_constraints_ticket: []

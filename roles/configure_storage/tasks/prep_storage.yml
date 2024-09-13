@@ -1,0 +1,47 @@
+---
+- name: Get repolist status
+  command: 
+    cmd: dnf repolist
+  changed_when: false 
+  register: repos_OUT
+
+- name: "Enable rhel-{{ ansible_distribution_major_version }}-for-{{ ansible_architecture }}-resilientstorage-rpms repo"
+  command: 
+    cmd: "subscription-manager repos --enable rhel-{{ ansible_distribution_major_version }}-for-{{ ansible_architecture }}-resilientstorage-rpms"
+  when: not repos_OUT.stdout is search("resilientstorage-rpms") 
+
+- name: Install necessary packages
+  package:
+    name: "{{ storage_packages }}"
+    state: installed
+
+- name: Ensure lvmlockd is running
+  service:
+    name: lvmlockd
+    state: started
+    enabled: true 
+
+- name: Enable use_lvmlockd option in /etc/lvm/lvm.conf
+  lineinfile:
+    path: /etc/lvm/lvm.conf
+    state: present
+    #line: '        use_lvmlockd = 1'
+    line: "\tuse_lvmlockd = 1"
+    insertafter: '^global {'
+  notify: restart_lvmlockd
+
+- name: Add reservation key to /etc/multipath.conf
+  template:
+    src: multipath.j2
+    dest: /etc/multipath.conf
+    backup: true 
+  notify: reload_multipathd
+
+- name: reload multipathd
+  service:
+    name: multipathd
+    state: reloaded
+    enabled: true
+
+- name: Force all notified handlers to run at this point, not waiting for normal sync points
+  ansible.builtin.meta: flush_handlers

@@ -1,0 +1,354 @@
+# SPDX-License-Identifier: MIT
+---
+ha_cluster_enable_repos: yes
+
+ha_cluster_cluster_present: yes
+
+ha_cluster_start_on_boot: yes
+
+ha_cluster_extra_packages: []
+
+ha_cluster_fence_agent_packages:
+  - fence-agents-all
+  - fence-virt
+
+ha_cluster_hacluster_password: ""
+ha_cluster_regenerate_keys: no
+ha_cluster_corosync_key_src: null
+ha_cluster_pacemaker_key_src: null
+ha_cluster_fence_virt_key_src: null
+ha_cluster_pcsd_public_key_src: null
+ha_cluster_pcsd_private_key_src: null
+
+ha_cluster_cluster_name: my-cluster
+
+ha_cluster_transport: {}
+ha_cluster_totem: {}
+ha_cluster_quorum: {}
+
+ha_cluster_sbd_enabled: no
+ha_cluster_sbd_options: []
+
+ha_cluster_pcs_permission_list:
+  - type: group
+    name: haclient
+    allow_list:
+      - grant
+      - read
+      - write
+
+ha_cluster_cluster_properties: 
+  - attrs:
+      - name: no-quorum-policy
+        value: freeze
+ha_cluster_resource_primitives:
+  - id: mpath
+    agent: 'stonith:fence_mpath'
+    instance_attrs:
+      - attrs:
+          - name: devices
+            value: /dev/mapper/mpathb,/dev/mapper/mpathc,/dev/mapper/mpathd
+          - name: pcmk_host_map
+            value: lhdvatm170pr01.cce3.gpc:8;lhdvatm170pr02.cce3.gpc:9
+    meta_attrs:
+      - attrs:
+          - name: provides
+            value: unfencing
+    operations:
+      - action: monitor
+        attrs:
+          - name: interval
+            value: '60s'
+  - id: flhdvatm170pr01_ip
+    agent: 'ocf:heartbeat:IPaddr'
+    instance_attrs:
+      - attrs:
+          - name: ip
+            value: 10.5.136.34
+    operations:
+      - action: monitor
+        attrs:
+          - name: interval
+            value: '10s'
+          - name: timeout
+            value: '20s'
+      - action: start
+        attrs:
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '20s'
+      - action: stop
+        attrs:
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '20s'
+  - id: flhdvatm170pr01_nfsserver
+    agent: 'service:nfs-server'
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: flhdvatm170pr01_nfsserver-monitor-interval-60
+          - name: interval
+            value: '30s'
+          - name: timeout
+            value: '100s'
+      - action: start
+        attrs:
+          - name: id
+            value: flhdvatm170pr01_nfsserver-start-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '100s'
+      - action: stop
+        attrs:
+          - name: id
+            value: flhdvatm170pr01_nfsserver-stop-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '100s'
+  - id: dlm
+    agent: 'ocf:pacemaker:controld'
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: dlm-monitor-interval-30s
+          - name: interval
+            value: '30s'
+          - name: on-fail
+            value: fence
+      - action: start
+        attrs:
+          - name: id
+            value: dlm-start-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '90s'
+      - action: stop
+        attrs:
+          - name: id
+            value: dlm-stop-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '100s'
+  - id: lvmlockd
+    agent: 'ocf:heartbeat:lvmlockd'
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: lvmlockd-monitor-interval-30s
+          - name: interval
+            value: '30s'
+          - name: on-fail
+            value: fence
+      - action: start
+        attrs:
+          - name: id
+            value: lvmlockd-start-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '90s'
+      - action: stop
+        attrs:
+          - name: id
+            value: lvmlockd-stop-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '90s'
+  - id: home_gpc_lv
+    agent: 'ocf:heartbeat:LVM-activate'
+    instance_attrs:
+      - attrs:
+          - name: activation_mode
+            value: shared
+          - name: lvname
+            value: home_gpc_lv
+          - name: vg_access_mode
+            value: lvmlockd
+          - name: vgname
+            value: cldata_vg
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: home_gpc_lv-monitor-interval-30s
+          - name: interval
+            value: '30s'
+          - name: timeout
+            value: '90s'
+      - action: start
+        attrs:
+          - name: id
+            value: home_gpc_lv-start-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '90s'
+      - action: stop
+        attrs:
+          - name: id
+            value: home_gpc_lv-stop-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '90s'
+  - id: home_oua_lv
+    agent: 'ocf:heartbeat:LVM-activate'
+    instance_attrs:
+      - attrs:
+          - name: activation_mode
+            value: shared
+          - name: lvname
+            value: home_oua_lv
+          - name: vg_access_mode
+            value: lvmlockd
+          - name: vgname
+            value: cldata_vg
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: home_oua_lv-monitor-interval-30s
+          - name: interval
+            value: '30s'
+          - name: timeout
+            value: '90s'
+      - action: start
+        attrs:
+          - name: id
+            value: home_oua_lv-start-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '90s'
+      - action: stop
+        attrs:
+          - name: id
+            value: home_oua_lv-stop-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '90s'
+  - id: home_gpc_res
+    agent: 'ocf:heartbeat:Filesystem'
+    instance_attrs:
+      - attrs:
+          - name: device
+            value: '/dev/cldata_vg/home_gpc_lv'
+          - name: directory
+            value: '/home_gpc'
+          - name: fstype
+            value: gfs2
+          - name: options
+            value: noatime
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: home_gpc_res-monitor-interval-10s
+          - name: interval
+            value: '10s'
+          - name: on-fail
+            value: fence
+      - action: start
+        attrs:
+          - name: id
+            value: home_gpc_res-start-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '60s'
+      - action: stop
+        attrs:
+          - name: id
+            value: home_gpc_res-stop-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '60s'
+  - id: home_oua_res
+    agent: 'ocf:heartbeat:Filesystem'
+    instance_attrs:
+      - attrs:
+          - name: device
+            value: '/dev/cldata_vg/home_oua_lv'
+          - name: directory
+            value: '/home_oua'
+          - name: fstype
+            value: gfs2
+          - name: options
+            value: noatime
+    operations:
+      - action: monitor
+        attrs:
+          - name: id
+            value: home_oua_res-monitor-interval-10s
+          - name: interval
+            value: '10s'
+          - name: on-fail
+            value: fence
+      - action: start
+        attrs:
+          - name: id
+            value: home_oua_res-start-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '60s'
+      - action: stop
+        attrs:
+          - name: id
+            value: home_oua_res-stop-interval-0s
+          - name: interval
+            value: '0s'
+          - name: timeout
+            value: '60s'
+ha_cluster_resource_groups: 
+      - id: locking
+        resource_ids:
+          - dlm
+          - lvmlockd
+      - id: cldata_vg
+        resource_ids:
+          - home_gpc_lv
+          - home_oua_lv
+          - home_gpc_res
+          - home_oua_res
+
+ha_cluster_resource_clones: 
+  - resource_id: locking
+    meta_attrs:
+      - attrs:
+          - name: interleave
+            value: true
+  - resource_id: cldata_vg
+    meta_attrs:
+      - attrs:
+          - name: interleave
+            value: true
+
+ha_cluster_resource_bundles: []
+
+ha_cluster_constraints_location: []
+ha_cluster_constraints_ticket: []
+ha_cluster_constraints_colocation:
+  - resource_sets:
+      - resource_ids:
+          - cldata_vg-clone
+          - locking-clone
+
+ha_cluster_constraints_order:
+  - resource_first:
+      id: locking-clone
+    resource_then:
+      id: cldata_vg-clone

@@ -1,0 +1,36 @@
+---
+## volume group 
+## used in tasks/lvs.yml, tasks/vgs.yml
+vg_name_1: cldata_vg_01
+vg_name_2: cldata_vg_02
+vg_name_3: cldata_vg_03
+
+## logical volume 
+## used in tasks/lvs.yml
+lv_name_1: home_oua_lv
+lv_name_2: home_oma_lv
+lv_name_3: home_flex_lv
+lv_size: "100%FREE"
+
+
+## gfs2 FS creation
+## used in tasks/make_filesystems.yml
+gfs_name_1: home_oua
+gfs_name_2: home_oma
+gfs_name_3: home_flex
+
+## partition values
+## used in tasks/partition.yml
+LUN_1_partition_state: present
+LUN_2_partition_state: present
+LUN_3_partition_state: present
+
+## LUNs for creating file systems
+## used in tasks/partition.yml, tasks/set_vars_dynammic_LUNs.yml, tasks/set_vars_static_LUNs.yml, tasks/vgs.yml
+__500GB_LUN: ""
+__150GB_LUN_1: ""
+__150GB_LUN_2: ""
+
+## package names
+## used in tasks/install_packages.yml
+storage_packages: [lvm2,watchdog,lvm2-lockd,gfs2-utils,dlm] #  dlm -- rhel-8-for-x86_64-resilientstorage-rpms

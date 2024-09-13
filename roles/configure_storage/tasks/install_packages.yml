@@ -1,0 +1,15 @@
+---
+## lvm2 for lvm management
+## watchdog to start fencing on boot
+## lvm2-lockd to run lvmlockctl command before running lvmchange commands conditionally
+## gfs2-utils for gfs2 FS creation
+
+# - name: Enable RHEL repository
+#   rhsm_repository:
+#     name: "rhel-{{ ansible_facts.distribution_major_version }}-for-{{ ansible_facts.architecture }}-baseos-rpms"
+#     state: enabled
+  
+- name: Install dependencies
+  package:
+    name: "{{ storage_packages }}"
+    state: present

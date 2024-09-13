@@ -1,0 +1,9 @@
+---
+- name: Initialize LVM and create VGs
+  include_tasks: vgs.yml
+
+- name: Create logical volumes
+  include_tasks: lvs.yml
+
+- name: Create and mount gfs2 filesystems
+  include_tasks: make_filesystems.yml

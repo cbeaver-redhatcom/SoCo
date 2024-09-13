@@ -1,0 +1,23 @@
+- name: "Create partition on /dev/mapper/{{ __500GB_LUN.split('-')[-1] }}"
+  community.general.parted:
+    device: "/dev/mapper/{{ __500GB_LUN.split('-')[-1] }}"
+    number: 1
+    state: "{{ LUN_1_partition_state }}"
+    flags: [lvm]
+    part_end: 100%
+
+- name: "Create partition on /dev/mapper/{{ __150GB_LUN_1.split('-')[-1] }}"
+  community.general.parted:
+    device: "/dev/mapper/{{ __150GB_LUN_1.split('-')[-1] }}"
+    number: 1
+    state: "{{ LUN_2_partition_state }}"
+    flags: [lvm]
+    part_end: 100%
+
+- name: "Create partition on /dev/mapper/{{ __150GB_LUN_2.split('-')[-1] }}"
+  community.general.parted:
+    device: "/dev/mapper/{{ __150GB_LUN_2.split('-')[-1] }}"
+    number: 1
+    state: "{{ LUN_3_partition_state }}"
+    flags: [lvm]
+    part_end: 100%

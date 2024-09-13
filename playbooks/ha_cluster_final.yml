@@ -1,0 +1,98 @@
+---
+- name: deploy quorum server
+  hosts: quorum_node
+  vars:
+    ha_cluster_cluster_name: "{{ cluster_name }}"
+    ha_cluster_hacluster_password: "{{ cluster_password }}"
+    ha_cluster_cluster_present: false
+    __ha_cluster_qdevice_in_use: yes
+  vars_files: 
+    - /home/ansible/ansible/secret.yml
+  roles:
+    - rhel-system-roles.ha_cluster_final
+  tags: deploy_quorum
+
+- name: Set up shared filesystems requirements
+  hosts: cluster_nodes
+  vars_files: 
+    - /home/ansible/ansible/secret.yml
+  tasks:
+  - name: Prep all cluster nodes for using shared storage
+    include_role: 
+      name: configure_storage_final
+      tasks_from: prep_storage.yml 
+  tags: prep_storage
+
+- name: deploy cluster (mpath, lvmlockd, dlm resources)
+  hosts: cluster_nodes
+  vars:
+    ha_cluster_cluster_name: "{{ cluster_name }}"
+    ha_cluster_hacluster_password: "{{ cluster_password }}"
+    __ha_cluster_qdevice_in_use: no
+    mpath_devices: /dev/mapper/mpatha,/dev/mapper/mpathb,/dev/mapper/mpathc
+    mpath_device_pcmk: "nodea.lab.com:10;nodeb.lab.com:11"
+    nfs_server_monitor_interval: fsserver-monitor-interval-60
+    nfs_server_start_interval: nfsserver-start-interval-0s
+    nfs_server_stop_interval: nfsserver-stop-interval-0s
+    floating_ip: 10.0.0.1
+  vars_files: 
+    - /home/ansible/ansible/lvmlockd_dlm_final.yml
+    - /home/ansible/ansible/secret.yml  
+  roles:
+    - rhel-system-roles.ha_cluster_final
+  tags: deploy_cluster
+
+- name: configure storage (lvm & filesystems)
+  hosts: cluster_nodes
+  vars:
+    ha_cluster_cluster_name: "{{ cluster_name }}"
+    configure_storage: yes 
+    cluster_name: 
+    LUN_list: [dm-name-mpatha,dm-name-mpathb,dm-name-mpathc]  
+    __150GB_LUN_list: [dm-name-mpatha,dm-name-mpathb]
+    __500GB_LUN: "dm-name-mpathc"   # i.e. dm-name-mpathd  note: Leave this blank ("")for dynamic creation of variable
+    __150GB_LUN_1: "dm-name-mpatha"       # i.e. dm-name-mpathe  note: Leave this blank ("") for dynamic creation of variable
+    __150GB_LUN_2: "dm-name-mpathb"       # i.e. dm-name-mpathf  note: Leave this blank ("") for dynamic creation of variable
+  vars_files: 
+    - /home/ansible/ansible/secret.yml 
+  pre_tasks:
+  - name: Select & check LUNs
+    include_role:
+      name: select_LUN_final
+      tasks_from: set_vars_dynamic_LUNs.yml
+    run_once: true
+  tasks:
+  - name: Include role configure_storage
+    include_role:
+      name: configure_storage_final
+    when: configure_storage
+  tags: configure_storage
+
+- name: deploy cluster (lvm, filesystems)
+  hosts: cluster_nodes
+  vars:
+    ha_cluster_cluster_name: "{{ cluster_name }}"
+    ha_cluster_hacluster_password: "{{ cluster_password }}"
+    ha_cluster_quorum:
+      device:
+        model: net
+        model_options:
+          - name: host
+            value: quorum
+          - name: algorithm
+            value: ffsplit
+    __ha_cluster_qdevice_in_use: yes 
+    mpath_devices: /dev/mapper/mpatha,/dev/mapper/mpathb,/dev/mapper/mpathc
+    mpath_device_pcmk: "nodea.lab.com:10;nodeb.lab.com:11"
+    nfs_server_monitor_interval: nfsserver-monitor-interval-60
+    nfs_server_start_interval: nfsserver-start-interval-0s
+    nfs_server_stop_interval: nfsserver-stop-interval-0s
+    floating_ip: 10.0.0.1
+  vars_files: 
+    - /home/ansible/ansible/fs_resources_final.yml
+    - /home/ansible/ansible/secret.yml
+
+  roles:
+    - rhel-system-roles.ha_cluster_final
+  tags: deploy_shared_filesystems
+

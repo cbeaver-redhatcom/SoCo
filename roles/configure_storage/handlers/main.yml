@@ -1,0 +1,13 @@
+---
+# handlers file for configure_storage
+- name: restart_lvmlockd
+  service:
+    name: lvmlockd
+    state: restarted
+    enabled: true 
+
+- name: reload_multipathd
+  service:
+    name: multipathd
+    state: reloaded
+    enabled: true 

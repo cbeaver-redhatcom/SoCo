@@ -1,0 +1,57 @@
+---
+- name: Grab mount output
+  command:
+    cmd: mount
+  register: mount_out
+  delegate_to: nodea
+  run_once: true 
+  changed_when: false 
+
+- name: Create filesystem -- "{{ gfs_name_1 }}"
+  command:
+    cmd: "mkfs.gfs2 -j2 -p lock_dlm -t {{ cluster_name }}:{{ gfs_name_1 }} /dev/cldata_vg_01/{{ gfs_name_1 }}_lv"
+    stdin: y
+  when: not mount_out is search(gfs_name_1)  # runs when fs to be created not found in mount output
+  delegate_to: nodea
+  run_once: true 
+
+- name: Create filesystem -- "{{ gfs_name_2 }}"
+  command:
+    cmd: "mkfs.gfs2 -j2 -p lock_dlm -t {{ cluster_name }}:{{ gfs_name_2 }} /dev/cldata_vg_02/{{ gfs_name_2 }}_lv"
+    stdin: y
+  when: not mount_out is search(gfs_name_2) # runs when fs to be created not found in mount output
+  delegate_to: nodea
+  run_once: true 
+
+- name: Create filesystem -- "{{ gfs_name_3 }}"
+  command:
+    cmd: "mkfs.gfs2 -j2 -p lock_dlm -t {{ cluster_name }}:{{ gfs_name_3 }} /dev/cldata_vg_03/{{ gfs_name_3 }}_lv"
+    stdin: y
+  when: not mount_out is search(gfs_name_3) # runs when fs to be created not found in mount output
+  delegate_to: nodea
+  run_once: true 
+
+#mkfs.gfs2 -j2 -p lock_dlm -t lhdhqtm168uacls:home_gpc /dev/cldata_vg/home_gpc_lv
+
+#######################
+# mkfs.gfs2 parameters#
+#######################
+#
+# -j journals
+#       The  number of journals for mkfs.gfs2 to create.  At least one journal is required for each machine that will mount the filesystem concurrently.  If this option is not specified, only one jour‐
+#       nal will be created. This number may be used as an indicator of the number of nodes in the cluster in order to optimize the layout of the filesystem. As such, it is best to set this option with
+#       the maximum number of mounters in mind than to add more journals later.
+#
+# -p protocol
+#       Specify the locking protocol to use when no locking protocol is specified at mount time. Valid locking protocols are:
+#
+#           lock_dlm
+#                 This is the default. It enables DLM-based locking for use in shared storage configurations.
+#
+#           lock_nolock
+#                 This enables single-node locking
+#
+# -t clustername:lockspace
+#       The "lock table" pair used to uniquely identify this filesystem in a cluster.  The cluster name segment (maximum 32 characters) must match the name given to your cluster in  its  configuration;
+#       only members of this cluster are permitted to use this file system.  The lockspace segment (maximum 30 characters) is a unique file system name used to distinguish this gfs2 file system.  Valid
+#       clusternames and lockspaces may only contain alphanumeric characters, hyphens (-) and underscores (_).

@@ -1,0 +1,47 @@
+---
+- name: Capture lvs output
+  command: 
+    cmd: lvs
+  changed_when: false 
+  delegate_to: nodea 
+  run_once: true
+  register: lvs_out
+
+- name: "Create LV {{ lv_name_1 }}"
+  community.general.lvol:
+    vg: "{{ vg_name_1 }}"
+    lv: "{{ lv_name_1 }}"
+    size: "{{ lv_size }}"
+    active: yes
+    state: present
+  delegate_to: nodea 
+  run_once: true 
+  when: not lvs_out is search(lv_name_1)
+
+- name: "Create LV {{ lv_name_2 }}"
+  community.general.lvol:
+    vg: "{{ vg_name_2 }}"
+    lv: "{{ lv_name_2 }}"
+    size: "{{ lv_size }}"
+    active: yes
+    state: present
+  delegate_to: nodea 
+  run_once: true 
+  when: not lvs_out is search(lv_name_2)
+
+- name: "Create LV {{ lv_name_3 }}"
+  community.general.lvol:
+    vg: "{{ vg_name_3 }}"
+    lv: "{{ lv_name_3 }}"
+    size: "{{ lv_size }}"
+    active: yes
+    state: present
+  delegate_to: nodea 
+  run_once: true 
+  when: not lvs_out is search(lv_name_3)
+
+## NOTES ##
+###########
+## Above variables can be found in configure_storage/defaults/main.yml 
+## Due to locked down environment, community.general collection could not be installed per usual process
+## community.general collection had to be uploaded via ssh from employee workstation

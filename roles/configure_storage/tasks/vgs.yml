@@ -1,0 +1,86 @@
+--- 
+- name: Pause for 30 seconds to allow cluster resources to fully start
+  ansible.builtin.pause:
+    seconds: 30
+
+- name: Grab vgs output
+  command:
+    cmd: vgs
+  register: vgs_info
+  changed_when: false 
+
+- name: Create "{{ vg_name_1 }}"
+  command:
+    cmd: "vgcreate --shared {{ vg_name_1 }} /dev/mapper/{{ __500GB_LUN.split('-')[-1] }}"
+  when: not vgs_info is search(vg_name_1) # run when VG name not in vgs output
+  delegate_to: nodea 
+  run_once: true
+
+- name: Check on lock status of "{{ vg_name_1 }}"  ## See EOF for lvmlockctl --info output example
+  command: 
+    cmd: lvmlockctl --info
+  register: lock_info_1
+  #delegate_to: nodeb ## must run on ALL nodes. runs on nodea as part of vgcreate command
+  changed_when: false 
+
+- name: Start DLM ("{{ vg_name_1 }}")
+  command:
+    cmd: vgchange --lock-start "{{ vg_name_1 }}"
+  when: not lock_info_1 is search(vg_name_1) 
+  #delegate_to: nodeb  ## must run on ALL nodes. runs on nodea as part of vgcreate command
+
+- name: Create cldata_vg_02
+  command:
+    cmd: "vgcreate --shared {{ vg_name_2 }} /dev/mapper/{{ __150GB_LUN_1.split('-')[-1] }}"
+  when: not vgs_info is search(vg_name_2) # run when VG name not in vgs output
+  delegate_to: nodea 
+  run_once: true
+
+- name: Check on lock status of "{{ vg_name_2 }}"
+  command: 
+    cmd: lvmlockctl --info
+  register: lock_info_2
+  #delegate_to: nodeb ## must run on ALL nodes. runs on nodea as part of vgcreate command
+  changed_when: false 
+
+- name: Start DLM (cldata_vg_02)
+  command:
+    cmd: vgchange --lock-start "{{ vg_name_2 }}"
+  when: not lock_info_2 is search(vg_name_2)
+  #delegate_to: nodeb ## must run on ALL nodes. runs on nodea as part of vgcreate command
+
+- name: Create cldata_vg_03
+  command:
+    cmd: "vgcreate --shared {{ vg_name_3 }} /dev/mapper/{{ __150GB_LUN_2.split('-')[-1] }}"
+  when: not vgs_info is search(vg_name_3) # run when VG name not in vgs output
+  delegate_to: nodea 
+  run_once: true
+
+- name: Check on lock status of "{{ vg_name_3 }}"
+  command: 
+    cmd: lvmlockctl --info
+  register: lock_info_3
+  #delegate_to: nodeb ## must run on ALL nodes. runs on nodea as part of vgcreate command
+  changed_when: false 
+
+- name: Start DLM (cldata_vg_03)
+  command:
+    cmd: vgchange --lock-start "{{ vg_name_3 }}"
+  when: not lock_info_3 is search(vg_name_3)
+  #delegate_to: nodeb ## must run on ALL nodes. runs on nodea as part of vgcreate command
+
+## Exampe output of lvmlockctl --info
+##
+# root@lhdhqtm168ua01 ~]# lvmlockctl --info
+# VG vg_uuid= lock_type=
+# LS  lvm_global
+# LK VG un ver 0
+# LK GL un ver 0
+ 
+# VG cldata_vg lock_type=dlm cd3HAh-Dz6u-XUul-KwR5-FNXQ-WXFH-W7vVbE
+# LS dlm lvm_cldata_vg
+# LK VG un ver 0
+# LK LV sh tgNytD-JFRt-5fYg-XNr9-Xhwq-pcvs-V3ecIL
+# LK LV sh gtUvjI-UcS7-Jc4s-iFge-stIl-dcS8-S6GYNh
+
+## lvg module was complaining about the multipath device, so we need to use command module in this file.

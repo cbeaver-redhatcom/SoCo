@@ -1,0 +1,20 @@
+---
+- name: Start and enable pcsd on quorum device
+  service:
+    name: pcsd
+    state: started
+    enabled: yes 
+
+- name: Check status of QNet daemon on quorum device
+  command:
+    cmd:  pcs qdevice status net 
+  ignore_errors: yes 
+  failed_when: false 
+  register: qnetd_status
+
+- name: Start QNet daemon on quorum device
+  command:
+    cmd:  pcs qdevice setup model net --enable --start
+  when: qnetd_status.rc != 0
+
+  

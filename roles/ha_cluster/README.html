@@ -1,0 +1,2560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.6.10" />
+<title></title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+@media screen {
+  body {
+    max-width: 50em; /* approximately 80 characters wide */
+    margin-left: 16em;
+  }
+
+  #toc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 13em;
+    padding: 0.5em;
+    padding-bottom: 1.5em;
+    margin: 0;
+    overflow: auto;
+    border-right: 3px solid #f8f8f8;
+    background-color: white;
+  }
+
+  #toc .toclevel1 {
+    margin-top: 0.5em;
+  }
+
+  #toc .toclevel2 {
+    margin-top: 0.25em;
+    display: list-item;
+    color: #aaaaaa;
+  }
+
+  #toctitle {
+    margin-top: 0.5em;
+  }
+}
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install(2);
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<div id="toc">
+  <div id="toctitle">Table of Contents</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="ha_cluster">ha_cluster</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><span class="image">
+<img src="https://github.com/linux-system-roles/ha_cluster/workflows/tox/badge.svg" alt="CI Testing" />
+</span></p></div>
+<div class="paragraph"><p>An Ansible role for managing High Availability Clustering.</p></div>
+<div class="sect2">
+<h3 id="limitations">Limitations</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Supported OS: RHEL 8.3+, Fedora 31+
+</p>
+</li>
+<li>
+<p>
+Systems running RHEL are expected to be registered and have
+High-Availability repositories accessible.
+</p>
+</li>
+<li>
+<p>
+The role replaces the configuration of HA Cluster on specified nodes.
+Any settings not specified in the role variables will be lost.
+</p>
+</li>
+<li>
+<p>
+The role is capable of configuring:
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+single-link or multi-link cluster
+</p>
+</li>
+<li>
+<p>
+Corosync transport options including compression and encryption
+</p>
+</li>
+<li>
+<p>
+Corosync totem options
+</p>
+</li>
+<li>
+<p>
+Corosync quorum options
+</p>
+</li>
+<li>
+<p>
+SBD
+</p>
+</li>
+<li>
+<p>
+Pacemaker cluster properties
+</p>
+</li>
+<li>
+<p>
+stonith and resources
+</p>
+</li>
+<li>
+<p>
+resource constraints
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="role-variables">Role Variables</h3>
+<div class="sect3">
+<h4 id="defined-in-defaultsmainyml">Defined in <code>defaults/main.yml</code></h4>
+<div class="sect4">
+<h5 id="ha_cluster_enable_repos"><code>ha_cluster_enable_repos</code></h5>
+<div class="paragraph"><p>boolean, default: <code>yes</code></p></div>
+<div class="paragraph"><p>RHEL and CentOS only, enable repositories contaning needed packages</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_cluster_present"><code>ha_cluster_cluster_present</code></h5>
+<div class="paragraph"><p>boolean, default: <code>yes</code></p></div>
+<div class="paragraph"><p>If set to <code>yes</code>, HA cluster will be configured on the hosts according to
+other variables. If set to <code>no</code>, all HA Cluster configuration will be
+purged from target hosts.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_start_on_boot"><code>ha_cluster_start_on_boot</code></h5>
+<div class="paragraph"><p>boolean, default: <code>yes</code></p></div>
+<div class="paragraph"><p>If set to <code>yes</code>, cluster services will be configured to start on boot.
+If set to <code>no</code>, cluster services will be configured not to start on
+boot.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_fence_agent_packages"><code>ha_cluster_fence_agent_packages</code></h5>
+<div class="paragraph"><p>list of fence agent packages to install, default: fence-agents-all,
+fence-virt</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_extra_packages"><code>ha_cluster_extra_packages</code></h5>
+<div class="paragraph"><p>list of additional packages to be installed, default: no packages</p></div>
+<div class="paragraph"><p>This variable can be used to install additional packages not installed
+automatically by the role, for example custom resource agents.</p></div>
+<div class="paragraph"><p>It is possible to specify fence agents here as well. However,
+<code>ha_cluster_fence_agent_packages</code> is preferred for that, so that its
+default value is overriden.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_hacluster_password"><code>ha_cluster_hacluster_password</code></h5>
+<div class="paragraph"><p>string, no default - must be specified</p></div>
+<div class="paragraph"><p>Password of the <code>hacluster</code> user. This user has full access to a
+cluster. It is recommended to vault encrypt the value, see
+<a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html">https://docs.ansible.com/ansible/latest/user_guide/vault.html</a> for
+details.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_corosync_key_src"><code>ha_cluster_corosync_key_src</code></h5>
+<div class="paragraph"><p>path to Corosync authkey file, default: <code>null</code></p></div>
+<div class="paragraph"><p>Authentication and encryption key for Corosync communication. It is
+highly recommended to have a unique value for each cluster. The key
+should be 256 bytes of random data.</p></div>
+<div class="paragraph"><p>If value is provided, it is recommended to vault encrypt it. See
+<a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html">https://docs.ansible.com/ansible/latest/user_guide/vault.html</a> for
+details.</p></div>
+<div class="paragraph"><p>If no key is specified, a key already present on the nodes will be used.
+If nodes don&#8217;t have the same key, a key from one node will be
+distributed to other nodes so that all nodes have the same key. If no
+node has a key, a new key will be generated and distributed to the
+nodes.</p></div>
+<div class="paragraph"><p>If this variable is set, <code>ha_cluster_regenerate_keys</code> is ignored for
+this key.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_pacemaker_key_src"><code>ha_cluster_pacemaker_key_src</code></h5>
+<div class="paragraph"><p>path to Pacemaker authkey file, default: <code>null</code></p></div>
+<div class="paragraph"><p>Authentication and encryption key for Pacemaker communication. It is
+highly recommended to have a unique value for each cluster. The key
+should be 256 bytes of random data.</p></div>
+<div class="paragraph"><p>If value is provided, it is recommended to vault encrypt it. See
+<a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html">https://docs.ansible.com/ansible/latest/user_guide/vault.html</a> for
+details.</p></div>
+<div class="paragraph"><p>If no key is specified, a key already present on the nodes will be used.
+If nodes don&#8217;t have the same key, a key from one node will be
+distributed to other nodes so that all nodes have the same key. If no
+node has a key, a new key will be generated and distributed to the
+nodes.</p></div>
+<div class="paragraph"><p>If this variable is set, <code>ha_cluster_regenerate_keys</code> is ignored for
+this key.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_fence_virt_key_src"><code>ha_cluster_fence_virt_key_src</code></h5>
+<div class="paragraph"><p>path to fence-virt or fence-xvm pre-shared key file, default: <code>null</code></p></div>
+<div class="paragraph"><p>Authentication key for fence-virt or fence-xvm fence agent.</p></div>
+<div class="paragraph"><p>If value is provided, it is recommended to vault encrypt it. See
+<a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html">https://docs.ansible.com/ansible/latest/user_guide/vault.html</a> for
+details.</p></div>
+<div class="paragraph"><p>If no key is specified, a key already present on the nodes will be used.
+If nodes don&#8217;t have the same key, a key from one node will be
+distributed to other nodes so that all nodes have the same key. If no
+node has a key, a new key will be generated and distributed to the
+nodes.</p></div>
+<div class="paragraph"><p>If this variable is set, <code>ha_cluster_regenerate_keys</code> is ignored for
+this key.</p></div>
+<div class="paragraph"><p>If you let the role to generate new key, you are supposed to copy the
+key to your nodes' hypervisor to ensure that fencing works.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_pcsd_public_key_src-ha_cluster_pcsd_private_key_src"><code>ha_cluster_pcsd_public_key_src</code>, <code>ha_cluster_pcsd_private_key_src</code></h5>
+<div class="paragraph"><p>path to pcsd TLS certificate and key, default: <code>null</code></p></div>
+<div class="paragraph"><p>TLS certificate and private key for pcsd. If this is not specified, a
+certificate - key pair already present on the nodes will be used. If
+certificate - key pair is not present, a random new one will be
+generated.</p></div>
+<div class="paragraph"><p>If private key value is provided, it is recommended to vault encrypt it.
+See <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html">https://docs.ansible.com/ansible/latest/user_guide/vault.html</a> for
+details.</p></div>
+<div class="paragraph"><p>If these variables are set, <code>ha_cluster_regenerate_keys</code> is ignored for
+this certificate - key pair.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_regenerate_keys"><code>ha_cluster_regenerate_keys</code></h5>
+<div class="paragraph"><p>boolean, default: <code>no</code></p></div>
+<div class="paragraph"><p>If this is set to <code>yes</code>, pre-shared keys and TLS certificates will be
+regenerated. See also:
+<a href="#ha_cluster_corosync_key_src"><code>ha_cluster_corosync_key_src</code></a>,
+<a href="#ha_cluster_pacemaker_key_src"><code>ha_cluster_pacemaker_key_src</code></a>,
+<a href="#ha_cluster_fence_virt_key_src"><code>ha_cluster_fence_virt_key_src</code></a>,
+<a href="#ha_cluster_pcsd_public_key_src-ha_cluster_pcsd_private_key_src"><code>ha_cluster_pcsd_public_key_src</code></a>,
+<a href="#ha_cluster_pcsd_public_key_src-ha_cluster_pcsd_private_key_src"><code>ha_cluster_pcsd_private_key_src</code></a></p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_pcs_permission_list"><code>ha_cluster_pcs_permission_list</code></h5>
+<div class="paragraph"><p>structure and default value:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_pcs_permission_list:</span>
+  - <span style="color:#000000; font-weight:bold">type:</span> <span style="color:#000000; font-weight:bold">group</span>
+    <span style="color:#000000; font-weight:bold">name:</span> haclient
+    <span style="color:#000000; font-weight:bold">allow_list:</span>
+      - grant
+      - read
+      - write</code></pre>
+</div></div>
+<div class="paragraph"><p>This configures permissions to manage a cluster using pcsd. The items
+are as follows:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>type</code> - <code>user</code> or <code>group</code>
+</p>
+</li>
+<li>
+<p>
+<code>name</code> - user or group name
+</p>
+</li>
+<li>
+<p>
+<code>allow_list</code> - Allowed actions for the specified user or group:
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>read</code> - allows to view cluster status and settings
+</p>
+</li>
+<li>
+<p>
+<code>write</code> - allows to modify cluster settings except permissions and
+ACLs
+</p>
+</li>
+<li>
+<p>
+<code>grant</code> - allows to modify cluster permissions and ACLs
+</p>
+</li>
+<li>
+<p>
+<code>full</code> - allows unrestricted access to a cluster including adding and
+removing nodes and access to keys and certificates
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_cluster_name"><code>ha_cluster_cluster_name</code></h5>
+<div class="paragraph"><p>string, default: <code>my-cluster</code></p></div>
+<div class="paragraph"><p>Name of the cluster.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_transport"><code>ha_cluster_transport</code></h5>
+<div class="paragraph"><p>structure, default: no settings</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_transport:</span>
+  <span style="color:#000000; font-weight:bold">type:</span> knet
+  <span style="color:#000000; font-weight:bold">options:</span>
+    - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">1</span>_name
+      <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">1</span>_value
+    - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">2</span>_name
+      <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">2</span>_value
+  <span style="color:#000000; font-weight:bold">links:</span>
+    -
+      - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">1</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">1</span>_value
+      - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">2</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">2</span>_value
+    -
+      - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">1</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">1</span>_value
+      - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">2</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">2</span>_value
+  <span style="color:#000000; font-weight:bold">compression:</span>
+    - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">1</span>_name
+      <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">1</span>_value
+    - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">2</span>_name
+      <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">2</span>_value
+  <span style="color:#000000; font-weight:bold">crypto:</span>
+    - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">1</span>_name
+      <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">1</span>_value
+    - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">2</span>_name
+      <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">2</span>_value</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>type</code> (optional) - Transport type: <code>knet</code>, <code>udp</code> or <code>udpu</code>. Defaults
+to <code>knet</code> if not specified.
+</p>
+</li>
+<li>
+<p>
+<code>options</code> (optional) - List of name-value dictionaries with transport
+options.
+</p>
+</li>
+<li>
+<p>
+<code>links</code> (optional) - List of lists of name-value dictionaries. Each
+list of name-value dictionaries holds options for one Corosync link. It
+is recommended to set <code>linknumber</code> value for each link. Otherwise, the
+first list of dictionaries is assigned to the first link, the second one
+to the second link and so on. Only one link is supported with <code>udp</code> and
+<code>udpu</code> transports.
+</p>
+</li>
+<li>
+<p>
+<code>compression</code> (optional) - List of name-value dictionaries configuring
+transport compression. Only available for <code>knet</code> transport.
+</p>
+</li>
+<li>
+<p>
+<code>crypto</code> (optional) - List of name-value dictionaries configuring
+transport encryption. Only available for <code>knet</code> transport, where
+encryption is enabled by default. Encryption is always disabled with
+<code>udp</code> and <code>udpu</code> transports.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>For a list of allowed options, see <code>pcs -h cluster setup</code> or <code>pcs(8)</code>
+man page, section <em>cluster</em>, command <em>setup</em>. For a detailed
+description, see <code>corosync.conf(5)</code> man page.</p></div>
+<div class="paragraph"><p>You may take a look at <a href="#advanced-corosync-configuration">an
+example</a>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_totem"><code>ha_cluster_totem</code></h5>
+<div class="paragraph"><p>structure, default: no totem settings</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_totem:</span>
+  <span style="color:#000000; font-weight:bold">options:</span>
+    - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">1</span>_name
+      <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">1</span>_value
+    - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">2</span>_name
+      <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">2</span>_value</code></pre>
+</div></div>
+<div class="paragraph"><p>Corosync totem configuration. For a list of allowed options, see
+<code>pcs -h cluster setup</code> or <code>pcs(8)</code> man page, section <em>cluster</em>, command
+<em>setup</em>. For a detailed description, see <code>corosync.conf(5)</code> man page.</p></div>
+<div class="paragraph"><p>You may take a look at <a href="#advanced-corosync-configuration">an
+example</a>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_quorum"><code>ha_cluster_quorum</code></h5>
+<div class="paragraph"><p>structure, default: no quorum settings</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_quorum:</span>
+  <span style="color:#000000; font-weight:bold">options:</span>
+    - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">1</span>_name
+      <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">1</span>_value
+    - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">2</span>_name
+      <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">2</span>_value</code></pre>
+</div></div>
+<div class="paragraph"><p>Cluster quorum configuration. For now, it is possible to configure
+quorum options: <code>auto_tie_breaker</code>, <code>last_man_standing</code>,
+<code>last_man_standing_window</code>, <code>wait_for_all</code>. Quorum options are
+documented in <code>votequorum(5)</code> man page.</p></div>
+<div class="paragraph"><p>You may take a look at <a href="#advanced-corosync-configuration">an
+example</a>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_sbd_enabled"><code>ha_cluster_sbd_enabled</code></h5>
+<div class="paragraph"><p>boolean, default: <code>no</code></p></div>
+<div class="paragraph"><p>Defines whether to use SBD.</p></div>
+<div class="paragraph"><p>You may take a look at <a href="#configuring-cluster-to-use-sbd">an example</a>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_sbd_options"><code>ha_cluster_sbd_options</code></h5>
+<div class="paragraph"><p>list, default: <code>[]</code></p></div>
+<div class="paragraph"><p>List of name-value dictionaries specifying SBD options. Supported
+options are: <code>delay-start</code> (defaults to <code>no</code>), <code>startmode</code> (defaults to
+<code>always</code>), <code>timeout-action</code> (defaults to <code>flush,reboot</code>) and
+<code>watchdog-timeout</code> (defaults to <code>5</code>). See <code>sbd(8)</code> man page, section
+<em>Configuration via environment</em> for their description.</p></div>
+<div class="paragraph"><p>You may take a look at <a href="#configuring-cluster-to-use-sbd">an example</a>.</p></div>
+<div class="paragraph"><p>Watchdog and SBD devices are configured on a node to node basis in
+<a href="#sbd-watchdog-and-devices">inventory</a>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_cluster_properties"><code>ha_cluster_cluster_properties</code></h5>
+<div class="paragraph"><p>structure, default: no properties</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_cluster_properties:</span>
+  - <span style="color:#000000; font-weight:bold">attrs:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> property<span style="color:#b07e00">1</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> property<span style="color:#b07e00">1</span>_value
+      - <span style="color:#000000; font-weight:bold">name:</span> property<span style="color:#b07e00">2</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> property<span style="color:#b07e00">2</span>_value</code></pre>
+</div></div>
+<div class="paragraph"><p>List of sets of cluster properties - Pacemaker cluster-wide
+configuration. Currently, only one set is supported.</p></div>
+<div class="paragraph"><p>You may take a look at <a href="#configuring-cluster-properties">an example</a>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_resource_primitives"><code>ha_cluster_resource_primitives</code></h5>
+<div class="paragraph"><p>structure, default: no resources</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_resource_primitives:</span>
+  - <span style="color:#000000; font-weight:bold">id:</span> resource-id
+    <span style="color:#000000; font-weight:bold">agent:</span> resource-agent
+    <span style="color:#000000; font-weight:bold">instance_attrs:</span>
+      - <span style="color:#000000; font-weight:bold">attrs:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> attribute<span style="color:#b07e00">1</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> attribute<span style="color:#b07e00">1</span>_value
+          - <span style="color:#000000; font-weight:bold">name:</span> attribute<span style="color:#b07e00">2</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> attribute<span style="color:#b07e00">2</span>_value
+    <span style="color:#000000; font-weight:bold">meta_attrs:</span>
+      - <span style="color:#000000; font-weight:bold">attrs:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> meta_attribute<span style="color:#b07e00">1</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> meta_attribute<span style="color:#b07e00">1</span>_value
+          - <span style="color:#000000; font-weight:bold">name:</span> meta_attribute<span style="color:#b07e00">2</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> meta_attribute<span style="color:#b07e00">2</span>_value
+    <span style="color:#000000; font-weight:bold">operations:</span>
+      - <span style="color:#000000; font-weight:bold">action:</span> operation<span style="color:#b07e00">1</span>-<span style="color:#0057ae">action</span>
+        <span style="color:#000000; font-weight:bold">attrs:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> operation<span style="color:#b07e00">1</span>_attribute<span style="color:#b07e00">1</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> operation<span style="color:#b07e00">1</span>_attribute<span style="color:#b07e00">1</span>_value
+          - <span style="color:#000000; font-weight:bold">name:</span> operation<span style="color:#b07e00">1</span>_attribute<span style="color:#b07e00">2</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> operation<span style="color:#b07e00">1</span>_attribute<span style="color:#b07e00">2</span>_value
+      - <span style="color:#000000; font-weight:bold">action:</span> operation<span style="color:#b07e00">2</span>-<span style="color:#0057ae">action</span>
+        <span style="color:#000000; font-weight:bold">attrs:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> operation<span style="color:#b07e00">2</span>_attribute<span style="color:#b07e00">1</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> operation<span style="color:#b07e00">2</span>_attribute<span style="color:#b07e00">1</span>_value
+          - <span style="color:#000000; font-weight:bold">name:</span> operation<span style="color:#b07e00">2</span>_attribute<span style="color:#b07e00">2</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> operation<span style="color:#b07e00">2</span>_attribute<span style="color:#b07e00">2</span>_value</code></pre>
+</div></div>
+<div class="paragraph"><p>This variable defines Pacemaker resources (including stonith) configured
+by the role. The items are as follows:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>id</code> (mandatory) - ID of a resource.
+</p>
+</li>
+<li>
+<p>
+<code>agent</code> (mandatory) - Name of a resource or stonith agent, for example
+<code>ocf:pacemaker:Dummy</code> or <code>stonith:fence_xvm</code>. It is mandatory to use
+<code>stonith:</code> for stonith agents. For resource agents, it is possible to
+use a short name, such as <code>Dummy</code> instead of <code>ocf:pacemaker:Dummy</code>.
+However, if several agents with the same short name are installed, the
+role will fail as it will be unable to decide which agent should be
+used. Therefore, it is recommended to use full names.
+</p>
+</li>
+<li>
+<p>
+<code>instance_attrs</code> (optional) - List of sets of the resource&#8217;s instance
+attributes. Currently, only one set is supported. The exact names and
+values of attributes, as well as whether they are mandatory or not,
+depends on the resource or stonith agent.
+</p>
+</li>
+<li>
+<p>
+<code>meta_attrs</code> (optional) - List of sets of the resource&#8217;s meta
+attributes. Currently, only one set is supported.
+</p>
+</li>
+<li>
+<p>
+<code>operations</code> (optional) - List of the resource&#8217;s operations.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>action</code> (mandatory) - Operation action as defined by Pacemaker and
+the resource or stonith agent.
+</p>
+</li>
+<li>
+<p>
+<code>attrs</code> (mandatory) - Operation options, at least one option must be
+specified.
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-fencing-and-several-resources">an example</a>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_resource_groups"><code>ha_cluster_resource_groups</code></h5>
+<div class="paragraph"><p>structure, default: no resource groups</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_resource_groups:</span>
+  - <span style="color:#000000; font-weight:bold">id:</span> <span style="color:#000000; font-weight:bold">group</span>-id
+    <span style="color:#000000; font-weight:bold">resource_ids:</span>
+      - resource<span style="color:#b07e00">1</span>-id
+      - resource<span style="color:#b07e00">2</span>-id
+    <span style="color:#000000; font-weight:bold">meta_attrs:</span>
+      - <span style="color:#000000; font-weight:bold">attrs:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> group_meta_attribute<span style="color:#b07e00">1</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> group_meta_attribute<span style="color:#b07e00">1</span>_value
+          - <span style="color:#000000; font-weight:bold">name:</span> group_meta_attribute<span style="color:#b07e00">2</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> group_meta_attribute<span style="color:#b07e00">2</span>_value</code></pre>
+</div></div>
+<div class="paragraph"><p>This variable defines resource groups. The items are as follows:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>id</code> (mandatory) - ID of a group.
+</p>
+</li>
+<li>
+<p>
+<code>resources</code> (mandatory) - List of the group&#8217;s resources. Each resource
+is referenced by its ID and the resources must be defined in
+<a href="#ha_cluster_resource_primitives"><code>ha_cluster_resource_primitives</code></a>.
+At least one resource must be listed.
+</p>
+</li>
+<li>
+<p>
+<code>meta_attrs</code> (optional) - List of sets of the group&#8217;s meta attributes.
+Currently, only one set is supported.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-fencing-and-several-resources">an example</a>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_resource_clones"><code>ha_cluster_resource_clones</code></h5>
+<div class="paragraph"><p>structure, default: no resource clones</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_resource_clones:</span>
+  - <span style="color:#000000; font-weight:bold">resource_id:</span> resource-to-be-cloned
+    <span style="color:#000000; font-weight:bold">promotable:</span> yes
+    <span style="color:#000000; font-weight:bold">id:</span> custom-clone-id
+    <span style="color:#000000; font-weight:bold">meta_attrs:</span>
+      - <span style="color:#000000; font-weight:bold">attrs:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> clone_meta_attribute<span style="color:#b07e00">1</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> clone_meta_attribute<span style="color:#b07e00">1</span>_value
+          - <span style="color:#000000; font-weight:bold">name:</span> clone_meta_attribute<span style="color:#b07e00">2</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> clone_meta_attribute<span style="color:#b07e00">2</span>_value</code></pre>
+</div></div>
+<div class="paragraph"><p>This variable defines resource clones. The items are as follows:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>resource_id</code> (mandatory) - Resource to be cloned. The resource must
+be defined in
+<a href="#ha_cluster_resource_primitives"><code>ha_cluster_resource_primitives</code></a>
+or <a href="#ha_cluster_resource_groups"><code>ha_cluster_resource_groups</code></a>.
+</p>
+</li>
+<li>
+<p>
+<code>promotable</code> (optional) - Create a promotable clone, yes or no.
+</p>
+</li>
+<li>
+<p>
+<code>id</code> (optional) - Custom ID of the clone. If no ID is specified, it
+will be generated. Warning will be emitted if this option is not
+supported by the cluster.
+</p>
+</li>
+<li>
+<p>
+<code>meta_attrs</code> (optional) - List of sets of the clone&#8217;s meta attributes.
+Currently, only one set is supported.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-fencing-and-several-resources">an example</a>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_resource_bundles"><code>ha_cluster_resource_bundles</code></h5>
+<div class="paragraph"><p>structure, default: no bundle resources</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>- <span style="color:#000000; font-weight:bold">id:</span> bundle-id
+  <span style="color:#000000; font-weight:bold">resource_id:</span> resource-id
+  <span style="color:#000000; font-weight:bold">container:</span>
+    <span style="color:#000000; font-weight:bold">type:</span> container-type
+    <span style="color:#000000; font-weight:bold">options:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> container_option<span style="color:#b07e00">1</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> container_option<span style="color:#b07e00">1</span>_value
+      - <span style="color:#000000; font-weight:bold">name:</span> container_option<span style="color:#b07e00">2</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> container_option<span style="color:#b07e00">2</span>_value
+  <span style="color:#000000; font-weight:bold">network_options:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> network_option<span style="color:#b07e00">1</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> network_option<span style="color:#b07e00">1</span>_value
+      - <span style="color:#000000; font-weight:bold">name:</span> network_option<span style="color:#b07e00">2</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> network_option<span style="color:#b07e00">2</span>_value
+  <span style="color:#000000; font-weight:bold">port_map:</span>
+    -
+      - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">1</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">1</span>_value
+      - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">2</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">2</span>_value
+    -
+      - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">1</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">1</span>_value
+      - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">2</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">2</span>_value
+  <span style="color:#000000; font-weight:bold">storage_map:</span>
+    -
+      - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">1</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">1</span>_value
+      - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">2</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">2</span>_value
+    -
+      - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">1</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">1</span>_value
+      - <span style="color:#000000; font-weight:bold">name:</span> option<span style="color:#b07e00">2</span>_name
+        <span style="color:#000000; font-weight:bold">value:</span> option<span style="color:#b07e00">2</span>_value
+    <span style="color:#000000; font-weight:bold">meta_attrs:</span>
+      - <span style="color:#000000; font-weight:bold">attrs:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> bundle_meta_attribute<span style="color:#b07e00">1</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> bundle_meta_attribute<span style="color:#b07e00">1</span>_value
+          - <span style="color:#000000; font-weight:bold">name:</span> bundle_meta_attribute<span style="color:#b07e00">2</span>_name
+            <span style="color:#000000; font-weight:bold">value:</span> bundle_meta_attribute<span style="color:#b07e00">2</span>_value</code></pre>
+</div></div>
+<div class="paragraph"><p>This variable defines resource bundles. The items are as follows:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>id</code> (mandatory) - ID of a bundle.
+</p>
+</li>
+<li>
+<p>
+<code>resource_id</code> (optional) - Resource to be placed into the bundle. The
+resource must be defined in
+<a href="#ha_cluster_resource_primitives"><code>ha_cluster_resource_primitives</code></a>.
+</p>
+</li>
+<li>
+<p>
+<code>container.type</code> (mandatory) - Container technology, such as <code>docker</code>,
+<code>podman</code> or <code>rkt</code>.
+</p>
+</li>
+<li>
+<p>
+<code>container.options</code> (optional) - List of name-value dictionaries.
+Depending on the selected <code>container.type</code>, certain options may be
+required to be specified, such as <code>image</code>.
+</p>
+</li>
+<li>
+<p>
+<code>network_options</code> (optional) - List of name-value dictionaries. When a
+resource is placed into a bundle, some <code>network_options</code> may be required
+to be specified, such as <code>control-port</code> or <code>ip-range-start</code>.
+</p>
+</li>
+<li>
+<p>
+<code>port_map</code> (optional) - List of lists of name-value dictionaries
+defining port forwarding from the host network to the container network.
+Each list of name-value dictionaries holds options for one port
+forwarding.
+</p>
+</li>
+<li>
+<p>
+<code>storage_map</code> (optional) - List of lists of name-value dictionaries
+mapping directories on the host&#8217;s filesystem into the container. Each
+list of name-value dictionaries holds options for one directory mapping.
+</p>
+</li>
+<li>
+<p>
+<code>meta_attrs</code> (optional) - List of sets of the bundle&#8217;s meta
+attributes. Currently, only one set is supported.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Note, that the role does not install container launch technology
+automatically. However, you can install it by listing appropriate
+packages in <a href="#ha_cluster_extra_packages"><code>ha_cluster_extra_packages</code></a>
+variable.</p></div>
+<div class="paragraph"><p>Note, that the role does not build and distribute container images.
+Please, use other means to supply a fully configured container image to
+every node allowed to run a bundle depending on it.</p></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-fencing-and-several-resources">an example</a>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_constraints_location"><code>ha_cluster_constraints_location</code></h5>
+<div class="paragraph"><p>structure, default: no constraints</p></div>
+<div class="paragraph"><p>This variable defines resource location constraints. They tell the
+cluster which nodes a resource can run on. Resources can be specified by
+their ID or a pattern matching more resources. Nodes can be specified by
+their name or a rule.</p></div>
+<div class="paragraph"><p>Structure for constraints with resource ID and node name:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_constraints_location:</span>
+  - <span style="color:#000000; font-weight:bold">resource:</span>
+      <span style="color:#000000; font-weight:bold">id:</span> resource-id
+    <span style="color:#000000; font-weight:bold">node:</span> node-<span style="color:#0057ae">name</span>
+    <span style="color:#000000; font-weight:bold">id:</span> constraint-id
+    <span style="color:#000000; font-weight:bold">options:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> score
+        <span style="color:#000000; font-weight:bold">value:</span> score-value
+      - <span style="color:#000000; font-weight:bold">name:</span> option-<span style="color:#0057ae">name</span>
+        <span style="color:#000000; font-weight:bold">value:</span> option-value</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>resource</code> (mandatory) - Specification of a resource the constraint
+applies to.
+</p>
+</li>
+<li>
+<p>
+<code>node</code> (mandatory) - Name of a node the resource should prefer or
+avoid.
+</p>
+</li>
+<li>
+<p>
+<code>id</code> (optional) - ID of the constraint. If not specified, it will be
+autogenerated.
+</p>
+</li>
+<li>
+<p>
+<code>options</code> (optional) - List of name-value dictionaries.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>score</code> - Score sets weight of the constraint.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+Positive value means the resource prefers running on the node.
+</p>
+</li>
+<li>
+<p>
+Negative value means the resource should avoid running on the node.
+</p>
+</li>
+<li>
+<p>
+<code>-INFINITY</code> means the resource must avoid running on the node.
+</p>
+</li>
+<li>
+<p>
+If not specified, <code>score</code> defaults to <code>INFINITY</code>.
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-resource-constraints">an example</a>.</p></div>
+<div class="paragraph"><p>Structure for constraints with resource pattern and node name:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_constraints_location:</span>
+  - <span style="color:#000000; font-weight:bold">resource:</span>
+      <span style="color:#000000; font-weight:bold">pattern:</span> resource-pattern
+    <span style="color:#000000; font-weight:bold">node:</span> node-<span style="color:#0057ae">name</span>
+    <span style="color:#000000; font-weight:bold">id:</span> constraint-id
+    <span style="color:#000000; font-weight:bold">options:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> score
+        <span style="color:#000000; font-weight:bold">value:</span> score-value
+      - <span style="color:#000000; font-weight:bold">name:</span> resource-discovery
+        <span style="color:#000000; font-weight:bold">value:</span> resource-discovery-value</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+This is the same as the previous type, except the resource
+specification.
+</p>
+</li>
+<li>
+<p>
+<code>pattern</code> (mandatory) - POSIX extended regular expression resource IDs
+are matched against.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-resource-constraints">an example</a>.</p></div>
+<div class="paragraph"><p>Structure for constraints with resource ID and a rule:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_constraints_location:</span>
+  - <span style="color:#000000; font-weight:bold">resource:</span>
+      <span style="color:#000000; font-weight:bold">id:</span> resource-id
+      <span style="color:#000000; font-weight:bold">role:</span> resource-<span style="color:#000000; font-weight:bold">role</span>
+    <span style="color:#000000; font-weight:bold">rule:</span> rule-string
+    <span style="color:#000000; font-weight:bold">id:</span> constraint-id
+    <span style="color:#000000; font-weight:bold">options:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> score
+        <span style="color:#000000; font-weight:bold">value:</span> score-value
+      - <span style="color:#000000; font-weight:bold">name:</span> resource-discovery
+        <span style="color:#000000; font-weight:bold">value:</span> resource-discovery-value</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>resource</code> (mandatory) - Specification of a resource the constraint
+applies to.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>id</code> (mandatory) - Resource ID.
+</p>
+</li>
+<li>
+<p>
+<code>role</code> (optional) - You may limit the constraint to the specified
+resource role: <code>Started</code>, <code>Unpromoted</code>, <code>Promoted</code>.
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+<code>rule</code> (mandatory) - Constraint rule written using pcs syntax. See
+<code>pcs(8)</code> man page, section <code>constraint location</code> for details.
+</p>
+</li>
+<li>
+<p>
+Other items have the same meaning as above.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-resource-constraints">an example</a>.</p></div>
+<div class="paragraph"><p>Structure for constraints with resource pattern and a rule:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_constraints_location:</span>
+  - <span style="color:#000000; font-weight:bold">resource:</span>
+      <span style="color:#000000; font-weight:bold">pattern:</span> resource-pattern
+      <span style="color:#000000; font-weight:bold">role:</span> resource-<span style="color:#000000; font-weight:bold">role</span>
+    <span style="color:#000000; font-weight:bold">rule:</span> rule-string
+    <span style="color:#000000; font-weight:bold">id:</span> constraint-id
+    <span style="color:#000000; font-weight:bold">options:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> score
+        <span style="color:#000000; font-weight:bold">value:</span> score-value
+      - <span style="color:#000000; font-weight:bold">name:</span> resource-discovery
+        <span style="color:#000000; font-weight:bold">value:</span> resource-discovery-value</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+This is the same as the previous type, except the resource
+specification.
+</p>
+</li>
+<li>
+<p>
+<code>pattern</code> (mandatory) - POSIX extended regular expression resource IDs
+are matched against.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-resource-constraints">an example</a>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_constraints_colocation"><code>ha_cluster_constraints_colocation</code></h5>
+<div class="paragraph"><p>structure, default: no constraints</p></div>
+<div class="paragraph"><p>This variable defines resource colocation constraints. They tell the
+cluster that the location of one resource depends on the location of
+another one. There are two types of colocation constraints: a simple one
+for two resources, and a set constraint for multiple resources.</p></div>
+<div class="paragraph"><p>Structure for simple constraints:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_constraints_colocation:</span>
+  - <span style="color:#000000; font-weight:bold">resource_follower:</span>
+      <span style="color:#000000; font-weight:bold">id:</span> resource-id<span style="color:#b07e00">1</span>
+      <span style="color:#000000; font-weight:bold">role:</span> resource-<span style="color:#000000; font-weight:bold">role</span><span style="color:#b07e00">1</span>
+    <span style="color:#000000; font-weight:bold">resource_leader:</span>
+      <span style="color:#000000; font-weight:bold">id:</span> resource-id<span style="color:#b07e00">2</span>
+      <span style="color:#000000; font-weight:bold">role:</span> resource-<span style="color:#000000; font-weight:bold">role</span><span style="color:#b07e00">2</span>
+    <span style="color:#000000; font-weight:bold">id:</span> constraint-id
+    <span style="color:#000000; font-weight:bold">options:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> score
+        <span style="color:#000000; font-weight:bold">value:</span> score-value
+      - <span style="color:#000000; font-weight:bold">name:</span> option-<span style="color:#0057ae">name</span>
+        <span style="color:#000000; font-weight:bold">value:</span> option-value</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>resource_follower</code> (mandatory) - A resource that should be located
+relative to <code>resource_leader</code>.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>id</code> (mandatory) - Resource ID.
+</p>
+</li>
+<li>
+<p>
+<code>role</code> (optional) - You may limit the constraint to the specified
+resource role: <code>Started</code>, <code>Unpromoted</code>, <code>Promoted</code>.
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+<code>resource_leader</code> (mandatory) - The cluster will decide where to put
+this resource first and then decide where to put <code>resource_follower</code>.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>id</code> (mandatory) - Resource ID.
+</p>
+</li>
+<li>
+<p>
+<code>role</code> (optional) - You may limit the constraint to the specified
+resource role: <code>Started</code>, <code>Unpromoted</code>, <code>Promoted</code>.
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+<code>id</code> (optional) - ID of the constraint. If not specified, it will be
+autogenerated.
+</p>
+</li>
+<li>
+<p>
+<code>options</code> (optional) - List of name-value dictionaries.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>score</code> (optional) - Score sets weight of the constraint.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+Positive values indicate the resources should run on the same node.
+</p>
+</li>
+<li>
+<p>
+Negative values indicate the resources should run on different
+nodes.
+</p>
+</li>
+<li>
+<p>
+Values of <code>+INFINITY</code> and <code>-INFINITY</code> change "should" to "must".
+</p>
+</li>
+<li>
+<p>
+If not specified, <code>score</code> defaults to <code>INFINITY</code>.
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-resource-constraints">an example</a>.</p></div>
+<div class="paragraph"><p>Structure for set constraints:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_constraints_colocation:</span>
+  - <span style="color:#000000; font-weight:bold">resource_sets:</span>
+      - <span style="color:#000000; font-weight:bold">resource_ids:</span>
+          - resource-id<span style="color:#b07e00">1</span>
+          - resource-id<span style="color:#b07e00">2</span>
+        <span style="color:#000000; font-weight:bold">options:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> option-<span style="color:#0057ae">name</span>
+            <span style="color:#000000; font-weight:bold">value:</span> option-value
+    <span style="color:#000000; font-weight:bold">id:</span> constraint-id
+    <span style="color:#000000; font-weight:bold">options:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> score
+        <span style="color:#000000; font-weight:bold">value:</span> score-value
+      - <span style="color:#000000; font-weight:bold">name:</span> option-<span style="color:#0057ae">name</span>
+        <span style="color:#000000; font-weight:bold">value:</span> option-value</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>resource_sets</code> (mandatory) - List of resource sets.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>resource_ids</code> (mandatory) - List of resources in a set.
+</p>
+</li>
+<li>
+<p>
+<code>options</code> (optional) - List of name-value dictionaries fine-tuning
+how resources in the sets are treated by the constraint.
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+<code>id</code> (optional) - Same as above.
+</p>
+</li>
+<li>
+<p>
+<code>options</code> (optional) - Same as above.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-resource-constraints">an example</a>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_constraints_order"><code>ha_cluster_constraints_order</code></h5>
+<div class="paragraph"><p>structure, default: no constraints</p></div>
+<div class="paragraph"><p>This variable defines resource order constraints. They tell the cluster
+the order in which certain resource actions should occur. There are two
+types of order constraints: a simple one for two resources, and a set
+constraint for multiple resources.</p></div>
+<div class="paragraph"><p>Structure for simple constraints:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_constraints_order:</span>
+  - <span style="color:#000000; font-weight:bold">resource_first:</span>
+      <span style="color:#000000; font-weight:bold">id:</span> resource-id<span style="color:#b07e00">1</span>
+      <span style="color:#000000; font-weight:bold">action:</span> resource-<span style="color:#0057ae">action</span><span style="color:#b07e00">1</span>
+    <span style="color:#000000; font-weight:bold">resource_then:</span>
+      <span style="color:#000000; font-weight:bold">id:</span> resource-id<span style="color:#b07e00">2</span>
+      <span style="color:#000000; font-weight:bold">action:</span> resource-<span style="color:#0057ae">action</span><span style="color:#b07e00">2</span>
+    <span style="color:#000000; font-weight:bold">id:</span> constraint-id
+    <span style="color:#000000; font-weight:bold">options:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> score
+        <span style="color:#000000; font-weight:bold">value:</span> score-value
+      - <span style="color:#000000; font-weight:bold">name:</span> option-<span style="color:#0057ae">name</span>
+        <span style="color:#000000; font-weight:bold">value:</span> option-value</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>resource_first</code> (mandatory) - Resource that the <code>resource_then</code>
+depends on.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>id</code> (mandatory) - Resource ID.
+</p>
+</li>
+<li>
+<p>
+<code>action</code> (optional) - The action that the resource must complete
+before an action can be initiated for the <code>resource_then</code>. Allowed
+values: <code>start</code>, <code>stop</code>, <code>promote</code>, <code>demote</code>.
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+<code>resource_then</code> (mandatory) - The dependent resource.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>id</code> (mandatory) - Resource ID.
+</p>
+</li>
+<li>
+<p>
+<code>action</code> (optional) - The action that the resource can execute only
+after the action on the <code>resource_first</code> has completed. Allowed values:
+<code>start</code>, <code>stop</code>, <code>promote</code>, <code>demote</code>.
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+<code>id</code> (optional) - ID of the constraint. If not specified, it will be
+autogenerated.
+</p>
+</li>
+<li>
+<p>
+<code>options</code> (optional) - List of name-value dictionaries.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-resource-constraints">an example</a>.</p></div>
+<div class="paragraph"><p>Structure for set constraints:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_constraints_order:</span>
+  - <span style="color:#000000; font-weight:bold">resource_sets:</span>
+      - <span style="color:#000000; font-weight:bold">resource_ids:</span>
+          - resource-id<span style="color:#b07e00">1</span>
+          - resource-id<span style="color:#b07e00">2</span>
+        <span style="color:#000000; font-weight:bold">options:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> option-<span style="color:#0057ae">name</span>
+            <span style="color:#000000; font-weight:bold">value:</span> option-value
+    <span style="color:#000000; font-weight:bold">id:</span> constraint-id
+    <span style="color:#000000; font-weight:bold">options:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> score
+        <span style="color:#000000; font-weight:bold">value:</span> score-value
+      - <span style="color:#000000; font-weight:bold">name:</span> option-<span style="color:#0057ae">name</span>
+        <span style="color:#000000; font-weight:bold">value:</span> option-value</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>resource_sets</code> (mandatory) - List of resource sets.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>resource_ids</code> (mandatory) - List of resources in a set.
+</p>
+</li>
+<li>
+<p>
+<code>options</code> (optional) - List of name-value dictionaries fine-tuning
+how resources in the sets are treated by the constraint.
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+<code>id</code> (optional) - Same as above.
+</p>
+</li>
+<li>
+<p>
+<code>options</code> (optional) - Same as above.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-resource-constraints">an example</a>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="ha_cluster_constraints_ticket"><code>ha_cluster_constraints_ticket</code></h5>
+<div class="paragraph"><p>structure, default: no constraints</p></div>
+<div class="paragraph"><p>This variable defines resource ticket constraints. They let you specify
+the resources depending on a certain ticket. There are two types of
+ticket constraints: a simple one for two resources, and a set constraint
+for multiple resources.</p></div>
+<div class="paragraph"><p>Structure for simple constraints:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_constraints_ticket:</span>
+  - <span style="color:#000000; font-weight:bold">resource:</span>
+      <span style="color:#000000; font-weight:bold">id:</span> resource-id
+      <span style="color:#000000; font-weight:bold">role:</span> resource-<span style="color:#000000; font-weight:bold">role</span>
+    <span style="color:#000000; font-weight:bold">ticket:</span> ticket-<span style="color:#0057ae">name</span>
+    <span style="color:#000000; font-weight:bold">id:</span> constraint-id
+    <span style="color:#000000; font-weight:bold">options:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> loss-policy
+        <span style="color:#000000; font-weight:bold">value:</span> loss-policy-value
+      - <span style="color:#000000; font-weight:bold">name:</span> option-<span style="color:#0057ae">name</span>
+        <span style="color:#000000; font-weight:bold">value:</span> option-value</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>resource</code> (mandatory) - Specification of a resource the constraint
+applies to.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>id</code> (mandatory) - Resource ID.
+</p>
+</li>
+<li>
+<p>
+<code>role</code> (optional) - You may limit the constraint to the specified
+resource role: <code>Started</code>, <code>Unpromoted</code>, <code>Promoted</code>.
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+<code>ticket</code> (mandatory) - Name of a ticket the resource depends on.
+</p>
+</li>
+<li>
+<p>
+<code>id</code> (optional) - ID of the constraint. If not specified, it will be
+autogenerated.
+</p>
+</li>
+<li>
+<p>
+<code>options</code> (optional) - List of name-value dictionaries.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>loss-policy</code> (optional) - Action that should happen to the resource
+if the ticket is revoked.
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-resource-constraints">an example</a>.</p></div>
+<div class="paragraph"><p>Structure for set constraints:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">ha_cluster_constraints_ticket:</span>
+  - <span style="color:#000000; font-weight:bold">resource_sets:</span>
+      - <span style="color:#000000; font-weight:bold">resource_ids:</span>
+          - resource-id<span style="color:#b07e00">1</span>
+          - resource-id<span style="color:#b07e00">2</span>
+        <span style="color:#000000; font-weight:bold">options:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> option-<span style="color:#0057ae">name</span>
+            <span style="color:#000000; font-weight:bold">value:</span> option-value
+    <span style="color:#000000; font-weight:bold">ticket:</span> ticket-<span style="color:#0057ae">name</span>
+    <span style="color:#000000; font-weight:bold">id:</span> constraint-id
+    <span style="color:#000000; font-weight:bold">options:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> option-<span style="color:#0057ae">name</span>
+        <span style="color:#000000; font-weight:bold">value:</span> option-value</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>resource_sets</code> (mandatory) - List of resource sets.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>resource_ids</code> (mandatory) - List of resources in a set.
+</p>
+</li>
+<li>
+<p>
+<code>options</code> (optional) - List of name-value dictionaries fine-tuning
+how resources in the sets are treated by the constraint.
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+<code>ticket</code> (mandatory) - Same as above.
+</p>
+</li>
+<li>
+<p>
+<code>id</code> (optional) - Same as above.
+</p>
+</li>
+<li>
+<p>
+<code>options</code> (optional) - Same as above.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>You may take a look at
+<a href="#creating-a-cluster-with-resource-constraints">an example</a>.</p></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="inventory">Inventory</h4>
+<div class="sect4">
+<h5 id="nodes-names-and-addresses">Nodes' names and addresses</h5>
+<div class="paragraph"><p>Nodes' names and addresses can be configured in inventory. This is
+optional. If no names or addresses are configured, play&#8217;s targets will
+be used.</p></div>
+<div class="paragraph"><p>Example inventory with targets <code>node1</code> and <code>node2</code>:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">all:</span>
+  <span style="color:#000000; font-weight:bold">hosts:</span>
+    node<span style="color:#b07e00">1</span>:
+      <span style="color:#000000; font-weight:bold">ha_cluster:</span>
+        <span style="color:#000000; font-weight:bold">node_name:</span> node-A
+        <span style="color:#000000; font-weight:bold">pcs_address:</span> node<span style="color:#b07e00">1</span>-address
+        <span style="color:#000000; font-weight:bold">corosync_addresses:</span>
+          - <span style="color:#b07e00">192.168.1.11</span>
+          - <span style="color:#b07e00">192.168.2.11</span>
+    node<span style="color:#b07e00">2</span>:
+      <span style="color:#000000; font-weight:bold">ha_cluster:</span>
+        <span style="color:#000000; font-weight:bold">node_name:</span> node-B
+        <span style="color:#000000; font-weight:bold">pcs_address:</span> node<span style="color:#b07e00">2</span>-<span style="color:#000000; font-weight:bold">address:</span><span style="color:#b07e00">2224</span>
+        <span style="color:#000000; font-weight:bold">corosync_addresses:</span>
+          - <span style="color:#b07e00">192.168.1.12</span>
+          - <span style="color:#b07e00">192.168.2.12</span></code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>node_name</code> - the name of a node in a cluster
+</p>
+</li>
+<li>
+<p>
+<code>pcs_address</code> - an address used by pcs to communicate with the node,
+it can be a name, FQDN or an IP address and it can contain port
+</p>
+</li>
+<li>
+<p>
+<code>corosync_addresses</code> - list of addresses used by Corosync, all nodes
+must have the same number of addresses and the order of the addresses
+matters
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect4">
+<h5 id="sbd-watchdog-and-devices">SBD watchdog and devices</h5>
+<div class="paragraph"><p>When using SBD, you may optionally configure watchdog and SBD devices
+for each node in inventory. Even though all SBD devices must be shared
+to and accesible from all nodes, each node may use different names for
+the devices. Watchdog may be different for each node as well. See also
+<a href="#ha_cluster_sbd_enabled">SBD variables</a>.</p></div>
+<div class="paragraph"><p>Example inventory with targets <code>node1</code> and <code>node2</code>:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">all:</span>
+  <span style="color:#000000; font-weight:bold">hosts:</span>
+    node<span style="color:#b07e00">1</span>:
+      <span style="color:#000000; font-weight:bold">ha_cluster:</span>
+        <span style="color:#000000; font-weight:bold">sbd_watchdog:</span> /dev/watchdog<span style="color:#b07e00">2</span>
+        <span style="color:#000000; font-weight:bold">sbd_devices:</span>
+          - /dev/vdx
+          - /dev/vdy
+    node<span style="color:#b07e00">2</span>:
+      <span style="color:#000000; font-weight:bold">ha_cluster:</span>
+        <span style="color:#000000; font-weight:bold">sbd_watchdog:</span> /dev/watchdog<span style="color:#b07e00">1</span>
+        <span style="color:#000000; font-weight:bold">sbd_devices:</span>
+          - /dev/vdw
+          - /dev/vdz</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>sbd_watchdog</code> (optional) - Watchdog device to be used by SBD.
+Defaults to <code>/dev/watchdog</code> if not set.
+</p>
+</li>
+<li>
+<p>
+<code>sbd_devices</code> (optional) - Devices to use for exchanging SBD messages
+and for monitoring. Defaults to empty list if not set.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="example-playbooks">Example Playbooks</h3>
+<div class="paragraph"><p>Following examples show what the structure of the role variables looks
+like. They are not guides or best practices for configuring a cluster.</p></div>
+<div class="sect3">
+<h4 id="creating-a-cluster-running-no-resources">Creating a cluster running no resources</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code>- <span style="color:#000000; font-weight:bold">hosts:</span> node<span style="color:#b07e00">1</span> node<span style="color:#b07e00">2</span>
+  <span style="color:#000000; font-weight:bold">vars:</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_cluster_name:</span> my-new-cluster
+    <span style="color:#000000; font-weight:bold">ha_cluster_hacluster_password:</span> password
+
+  <span style="color:#000000; font-weight:bold">roles:</span>
+    - rhel-system-<span style="color:#000000; font-weight:bold">roles</span>.ha_cluster</code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="advanced-corosync-configuration">Advanced Corosync configuration</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code>- <span style="color:#000000; font-weight:bold">hosts:</span> node<span style="color:#b07e00">1</span> node<span style="color:#b07e00">2</span>
+  <span style="color:#000000; font-weight:bold">vars:</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_cluster_name:</span> my-new-cluster
+    <span style="color:#000000; font-weight:bold">ha_cluster_hacluster_password:</span> password
+    <span style="color:#000000; font-weight:bold">ha_cluster_transport:</span>
+      <span style="color:#000000; font-weight:bold">type:</span> knet
+      <span style="color:#000000; font-weight:bold">options:</span>
+        - <span style="color:#000000; font-weight:bold">name:</span> ip_version
+          <span style="color:#000000; font-weight:bold">value:</span> ipv<span style="color:#b07e00">4</span>-<span style="color:#b07e00">6</span>
+        - <span style="color:#000000; font-weight:bold">name:</span> link_mode
+          <span style="color:#000000; font-weight:bold">value:</span> active
+      <span style="color:#000000; font-weight:bold">links:</span>
+        -
+          - <span style="color:#000000; font-weight:bold">name:</span> linknumber
+            <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">1</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> link_priority
+            <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">5</span>
+        -
+          - <span style="color:#000000; font-weight:bold">name:</span> linknumber
+            <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">0</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> link_priority
+            <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">10</span>
+      <span style="color:#000000; font-weight:bold">compression:</span>
+        - <span style="color:#000000; font-weight:bold">name:</span> level
+          <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">5</span>
+        - <span style="color:#000000; font-weight:bold">name:</span> model
+          <span style="color:#000000; font-weight:bold">value:</span> zlib
+      <span style="color:#000000; font-weight:bold">crypto:</span>
+        - <span style="color:#000000; font-weight:bold">name:</span> cipher
+          <span style="color:#000000; font-weight:bold">value:</span> none
+        - <span style="color:#000000; font-weight:bold">name:</span> hash
+          <span style="color:#000000; font-weight:bold">value:</span> none
+    <span style="color:#000000; font-weight:bold">ha_cluster_totem:</span>
+      <span style="color:#000000; font-weight:bold">options:</span>
+        - <span style="color:#000000; font-weight:bold">name:</span> block_unlisted_ips
+          <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&apos;yes&apos;</span>
+        - <span style="color:#000000; font-weight:bold">name:</span> send_join
+          <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">0</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_quorum:</span>
+      <span style="color:#000000; font-weight:bold">options:</span>
+        - <span style="color:#000000; font-weight:bold">name:</span> auto_tie_breaker
+          <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">1</span>
+        - <span style="color:#000000; font-weight:bold">name:</span> wait_for_all
+          <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">1</span>
+
+  <span style="color:#000000; font-weight:bold">roles:</span>
+    - rhel-system-<span style="color:#000000; font-weight:bold">roles</span>.ha_cluster</code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="configuring-cluster-to-use-sbd">Configuring cluster to use SBD</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code>- <span style="color:#000000; font-weight:bold">hosts:</span> node<span style="color:#b07e00">1</span> node<span style="color:#b07e00">2</span>
+  <span style="color:#000000; font-weight:bold">vars:</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_cluster_name:</span> my-new-cluster
+    <span style="color:#000000; font-weight:bold">ha_cluster_hacluster_password:</span> password
+    <span style="color:#000000; font-weight:bold">ha_cluster_sbd_enabled:</span> yes
+    <span style="color:#000000; font-weight:bold">ha_cluster_sbd_options:</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> <span style="color:#0057ae">delay</span>-start
+        <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&apos;no&apos;</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> startmode
+        <span style="color:#000000; font-weight:bold">value:</span> always
+      - <span style="color:#000000; font-weight:bold">name:</span> timeout-<span style="color:#0057ae">action</span>
+        <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&apos;flush,reboot&apos;</span>
+      - <span style="color:#000000; font-weight:bold">name:</span> watchdog-timeout
+        <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">5</span>
+
+  <span style="color:#000000; font-weight:bold">roles:</span>
+    - rhel-system-<span style="color:#000000; font-weight:bold">roles</span>.ha_cluster</code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="configuring-cluster-properties">Configuring cluster properties</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code>- <span style="color:#000000; font-weight:bold">hosts:</span> node<span style="color:#b07e00">1</span> node<span style="color:#b07e00">2</span>
+  <span style="color:#000000; font-weight:bold">vars:</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_cluster_name:</span> my-new-cluster
+    <span style="color:#000000; font-weight:bold">ha_cluster_hacluster_password:</span> password
+    <span style="color:#000000; font-weight:bold">ha_cluster_cluster_properties:</span>
+      - <span style="color:#000000; font-weight:bold">attrs:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> stonith-enabled
+            <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&apos;true&apos;</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> no-quorum-policy
+            <span style="color:#000000; font-weight:bold">value:</span> stop
+
+  <span style="color:#000000; font-weight:bold">roles:</span>
+    - rhel-system-<span style="color:#000000; font-weight:bold">roles</span>.ha_cluster</code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="creating-a-cluster-with-fencing-and-several-resources">Creating a cluster with fencing and several resources</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code>- <span style="color:#000000; font-weight:bold">hosts:</span> node<span style="color:#b07e00">1</span> node<span style="color:#b07e00">2</span>
+  <span style="color:#000000; font-weight:bold">vars:</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_cluster_name:</span> my-new-cluster
+    <span style="color:#000000; font-weight:bold">ha_cluster_hacluster_password:</span> password
+    <span style="color:#000000; font-weight:bold">ha_cluster_resource_primitives:</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> xvm-fencing
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;stonith:fence_xvm&apos;</span>
+        <span style="color:#000000; font-weight:bold">instance_attrs:</span>
+          - <span style="color:#000000; font-weight:bold">attrs:</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> pcmk_host_list
+                <span style="color:#000000; font-weight:bold">value:</span> node<span style="color:#b07e00">1</span> node<span style="color:#b07e00">2</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> simple-resource
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> resource-with-options
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+        <span style="color:#000000; font-weight:bold">instance_attrs:</span>
+          - <span style="color:#000000; font-weight:bold">attrs:</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> fake
+                <span style="color:#000000; font-weight:bold">value:</span> fake-value
+              - <span style="color:#000000; font-weight:bold">name:</span> passwd
+                <span style="color:#000000; font-weight:bold">value:</span> passwd-value
+        <span style="color:#000000; font-weight:bold">meta_attrs:</span>
+          - <span style="color:#000000; font-weight:bold">attrs:</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> target-<span style="color:#000000; font-weight:bold">role</span>
+                <span style="color:#000000; font-weight:bold">value:</span> Started
+              - <span style="color:#000000; font-weight:bold">name:</span> is-managed
+                <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&apos;true&apos;</span>
+        <span style="color:#000000; font-weight:bold">operations:</span>
+          - <span style="color:#000000; font-weight:bold">action:</span> start
+            <span style="color:#000000; font-weight:bold">attrs:</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> timeout
+                <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&apos;30s&apos;</span>
+          - <span style="color:#000000; font-weight:bold">action:</span> monitor
+            <span style="color:#000000; font-weight:bold">attrs:</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> timeout
+                <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&apos;5&apos;</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> interval
+                <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&apos;1min&apos;</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">1</span>
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">2</span>
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">3</span>
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> simple-clone
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> clone-with-options
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> bundled-resource
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_resource_groups:</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> simple-<span style="color:#000000; font-weight:bold">group</span>
+        <span style="color:#000000; font-weight:bold">resource_ids:</span>
+          - dummy-<span style="color:#b07e00">1</span>
+          - dummy-<span style="color:#b07e00">2</span>
+        <span style="color:#000000; font-weight:bold">meta_attrs:</span>
+          - <span style="color:#000000; font-weight:bold">attrs:</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> target-<span style="color:#000000; font-weight:bold">role</span>
+                <span style="color:#000000; font-weight:bold">value:</span> Started
+              - <span style="color:#000000; font-weight:bold">name:</span> is-managed
+                <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&apos;true&apos;</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> cloned-<span style="color:#000000; font-weight:bold">group</span>
+        <span style="color:#000000; font-weight:bold">resource_ids:</span>
+          - dummy-<span style="color:#b07e00">3</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_resource_clones:</span>
+      - <span style="color:#000000; font-weight:bold">resource_id:</span> simple-clone
+      - <span style="color:#000000; font-weight:bold">resource_id:</span> clone-with-options
+        <span style="color:#000000; font-weight:bold">promotable:</span> yes
+        <span style="color:#000000; font-weight:bold">id:</span> custom-clone-id
+        <span style="color:#000000; font-weight:bold">meta_attrs:</span>
+          - <span style="color:#000000; font-weight:bold">attrs:</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> clone-max
+                <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&apos;2&apos;</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> clone-node-max
+                <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&apos;1&apos;</span>
+      - <span style="color:#000000; font-weight:bold">resource_id:</span> cloned-<span style="color:#000000; font-weight:bold">group</span>
+        <span style="color:#000000; font-weight:bold">promotable:</span> yes
+    <span style="color:#000000; font-weight:bold">ha_cluster_resource_bundles:</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> bundle-with-resource
+        resource-<span style="color:#000000; font-weight:bold">id:</span> bundled-resource
+        <span style="color:#000000; font-weight:bold">container:</span>
+          <span style="color:#000000; font-weight:bold">type:</span> podman
+          <span style="color:#000000; font-weight:bold">options:</span>
+            - <span style="color:#000000; font-weight:bold">name:</span> image
+              <span style="color:#000000; font-weight:bold">value:</span> my:image
+        <span style="color:#000000; font-weight:bold">network_options:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> control-<span style="color:#000000; font-weight:bold">port</span>
+            <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">3121</span>
+        <span style="color:#000000; font-weight:bold">port_map:</span>
+          -
+            - <span style="color:#000000; font-weight:bold">name:</span> <span style="color:#000000; font-weight:bold">port</span>
+              <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">10001</span>
+          -
+            - <span style="color:#000000; font-weight:bold">name:</span> <span style="color:#000000; font-weight:bold">port</span>
+              <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">10002</span>
+            - <span style="color:#000000; font-weight:bold">name:</span> internal-<span style="color:#000000; font-weight:bold">port</span>
+              <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">10003</span>
+        <span style="color:#000000; font-weight:bold">storage_map:</span>
+          -
+            - <span style="color:#000000; font-weight:bold">name:</span> source-dir
+              <span style="color:#000000; font-weight:bold">value:</span> /srv/daemon-data
+            - <span style="color:#000000; font-weight:bold">name:</span> target-dir
+              <span style="color:#000000; font-weight:bold">value:</span> /var/daemon/data
+          -
+            - <span style="color:#000000; font-weight:bold">name:</span> source-dir-root
+              <span style="color:#000000; font-weight:bold">value:</span> /var/log/pacemaker/bundles
+            - <span style="color:#000000; font-weight:bold">name:</span> target-dir
+              <span style="color:#000000; font-weight:bold">value:</span> /var/log/daemon
+        <span style="color:#000000; font-weight:bold">meta_attrs:</span>
+          - <span style="color:#000000; font-weight:bold">attrs:</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> target-<span style="color:#000000; font-weight:bold">role</span>
+                <span style="color:#000000; font-weight:bold">value:</span> Started
+              - <span style="color:#000000; font-weight:bold">name:</span> is-managed
+                <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&apos;true&apos;</span>
+
+  <span style="color:#000000; font-weight:bold">roles:</span>
+    - rhel-system-<span style="color:#000000; font-weight:bold">roles</span>.ha_cluster</code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="creating-a-cluster-with-resource-constraints">Creating a cluster with resource constraints</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code>- <span style="color:#000000; font-weight:bold">hosts:</span> node<span style="color:#b07e00">1</span> node<span style="color:#b07e00">2</span>
+  <span style="color:#000000; font-weight:bold">vars:</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_cluster_name:</span> my-new-cluster
+    <span style="color:#000000; font-weight:bold">ha_cluster_hacluster_password:</span> password
+    <span style="color:#838183; font-style:italic"># In order to use constraints, we need resources the constraints will apply</span>
+    <span style="color:#838183; font-style:italic"># to.</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_resource_primitives:</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> xvm-fencing
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;stonith:fence_xvm&apos;</span>
+        <span style="color:#000000; font-weight:bold">instance_attrs:</span>
+          - <span style="color:#000000; font-weight:bold">attrs:</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> pcmk_host_list
+                <span style="color:#000000; font-weight:bold">value:</span> node<span style="color:#b07e00">1</span> node<span style="color:#b07e00">2</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">1</span>
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">2</span>
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">3</span>
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">4</span>
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">5</span>
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+      - <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">6</span>
+        <span style="color:#000000; font-weight:bold">agent:</span> <span style="color:#bf0303">&apos;ocf:pacemaker:Dummy&apos;</span>
+    <span style="color:#838183; font-style:italic"># location constraints</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_constraints_location:</span>
+      <span style="color:#838183; font-style:italic"># resource ID and node name</span>
+      - <span style="color:#000000; font-weight:bold">resource:</span>
+          <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">1</span>
+        <span style="color:#000000; font-weight:bold">node:</span> node<span style="color:#b07e00">1</span>
+        <span style="color:#000000; font-weight:bold">options:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> score
+            <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">20</span>
+      <span style="color:#838183; font-style:italic"># resource pattern and node name</span>
+      - <span style="color:#000000; font-weight:bold">resource:</span>
+          <span style="color:#000000; font-weight:bold">pattern:</span> dummy-\d<span style="color:#000000">+</span>
+        <span style="color:#000000; font-weight:bold">node:</span> node<span style="color:#b07e00">1</span>
+        <span style="color:#000000; font-weight:bold">options:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> score
+            <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">10</span>
+      <span style="color:#838183; font-style:italic"># resource ID and rule</span>
+      - <span style="color:#000000; font-weight:bold">resource:</span>
+          <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">2</span>
+        <span style="color:#000000; font-weight:bold">rule:</span> <span style="color:#bf0303">&apos;#uname eq node2 and date in_range 2022-01-01 to 2022-02-28&apos;</span>
+      <span style="color:#838183; font-style:italic"># resource pattern and rule</span>
+      - <span style="color:#000000; font-weight:bold">resource:</span>
+          <span style="color:#000000; font-weight:bold">pattern:</span> dummy-\d<span style="color:#000000">+</span>
+        <span style="color:#000000; font-weight:bold">rule:</span> node-type eq weekend and date-spec <span style="color:#010181">weekdays</span><span style="color:#000000">=</span><span style="color:#b07e00">6</span>-<span style="color:#b07e00">7</span>
+    <span style="color:#838183; font-style:italic"># colocation constraints</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_constraints_colocation:</span>
+      <span style="color:#838183; font-style:italic"># simple constraint</span>
+      - <span style="color:#000000; font-weight:bold">resource_leader:</span>
+          <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">3</span>
+        <span style="color:#000000; font-weight:bold">resource_follower:</span>
+          <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">4</span>
+        <span style="color:#000000; font-weight:bold">options:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> score
+            <span style="color:#000000; font-weight:bold">value:</span> -<span style="color:#b07e00">5</span>
+      <span style="color:#838183; font-style:italic"># set constraint</span>
+      - <span style="color:#000000; font-weight:bold">resource_sets:</span>
+          - <span style="color:#000000; font-weight:bold">resource_ids:</span>
+              - dummy-<span style="color:#b07e00">1</span>
+              - dummy-<span style="color:#b07e00">2</span>
+          - <span style="color:#000000; font-weight:bold">resource_ids:</span>
+              - dummy-<span style="color:#b07e00">5</span>
+              - dummy-<span style="color:#b07e00">6</span>
+            <span style="color:#000000; font-weight:bold">options:</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> sequential
+                <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&quot;false&quot;</span>
+        <span style="color:#000000; font-weight:bold">options:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> score
+            <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#b07e00">20</span>
+    <span style="color:#838183; font-style:italic"># order constraints</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_constraints_order:</span>
+      <span style="color:#838183; font-style:italic"># simple constraint</span>
+      - <span style="color:#000000; font-weight:bold">resource_first:</span>
+          <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">1</span>
+        <span style="color:#000000; font-weight:bold">resource_then:</span>
+          <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">6</span>
+        <span style="color:#000000; font-weight:bold">options:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> symmetrical
+            <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&quot;false&quot;</span>
+      <span style="color:#838183; font-style:italic"># set constraint</span>
+      - <span style="color:#000000; font-weight:bold">resource_sets:</span>
+          - <span style="color:#000000; font-weight:bold">resource_ids:</span>
+              - dummy-<span style="color:#b07e00">1</span>
+              - dummy-<span style="color:#b07e00">2</span>
+            <span style="color:#000000; font-weight:bold">options:</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> require-all
+                <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&quot;false&quot;</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> sequential
+                <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&quot;false&quot;</span>
+          - <span style="color:#000000; font-weight:bold">resource_ids:</span>
+              - dummy-<span style="color:#b07e00">3</span>
+          - <span style="color:#000000; font-weight:bold">resource_ids:</span>
+              - dummy-<span style="color:#b07e00">4</span>
+              - dummy-<span style="color:#b07e00">5</span>
+            <span style="color:#000000; font-weight:bold">options:</span>
+              - <span style="color:#000000; font-weight:bold">name:</span> sequential
+                <span style="color:#000000; font-weight:bold">value:</span> <span style="color:#bf0303">&quot;false&quot;</span>
+    <span style="color:#838183; font-style:italic"># ticket constraints</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_constraints_ticket:</span>
+      <span style="color:#838183; font-style:italic"># simple constraint</span>
+      - <span style="color:#000000; font-weight:bold">resource:</span>
+          <span style="color:#000000; font-weight:bold">id:</span> dummy-<span style="color:#b07e00">1</span>
+        <span style="color:#000000; font-weight:bold">ticket:</span> ticket<span style="color:#b07e00">1</span>
+        <span style="color:#000000; font-weight:bold">options:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> loss-policy
+            <span style="color:#000000; font-weight:bold">value:</span> stop
+      <span style="color:#838183; font-style:italic"># set constraint</span>
+      - <span style="color:#000000; font-weight:bold">resource_sets:</span>
+          - <span style="color:#000000; font-weight:bold">resource_ids:</span>
+              - dummy-<span style="color:#b07e00">3</span>
+              - dummy-<span style="color:#b07e00">4</span>
+              - dummy-<span style="color:#b07e00">5</span>
+        <span style="color:#000000; font-weight:bold">ticket:</span> ticket<span style="color:#b07e00">2</span>
+        <span style="color:#000000; font-weight:bold">options:</span>
+          - <span style="color:#000000; font-weight:bold">name:</span> loss-policy
+            <span style="color:#000000; font-weight:bold">value:</span> fence
+
+  <span style="color:#000000; font-weight:bold">roles:</span>
+    - rhel-system-<span style="color:#000000; font-weight:bold">roles</span>.ha_cluster</code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="purging-all-cluster-configuration">Purging all cluster configuration</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code>- <span style="color:#000000; font-weight:bold">hosts:</span> node<span style="color:#b07e00">1</span> node<span style="color:#b07e00">2</span>
+  <span style="color:#000000; font-weight:bold">vars:</span>
+    <span style="color:#000000; font-weight:bold">ha_cluster_cluster_present:</span> no
+
+  <span style="color:#000000; font-weight:bold">roles:</span>
+    - rhel-system-<span style="color:#000000; font-weight:bold">roles</span>.ha_cluster</code></pre>
+</div></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="license">License</h3>
+<div class="paragraph"><p>MIT</p></div>
+</div>
+<div class="sect2">
+<h3 id="author-information">Author Information</h3>
+<div class="paragraph"><p>Tomas Jelinek</p></div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr /></div>
+<div id="footer">
+</div>
+</body>
+</html>

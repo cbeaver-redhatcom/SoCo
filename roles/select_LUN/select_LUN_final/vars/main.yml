@@ -1,0 +1,4 @@
+---
+# vars file for select_LUN
+__150GB_LUN_list_length: 2
+total_LUNs_list_length: 3

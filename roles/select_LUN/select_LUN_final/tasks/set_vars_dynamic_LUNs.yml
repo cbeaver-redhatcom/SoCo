@@ -1,0 +1,84 @@
+---
+- name: Dynamically define variable __150GB_LUN_list (if 150GB LUNs dynamically defined)
+  set_fact:
+    __150GB_LUN_list: "{{ __150GB_LUN_list + [item.value.links.ids[0]] }}"
+  loop: "{{ lookup('ansible.builtin.dict', ansible_facts.devices) }}"
+  when:
+    - item.value.links.ids[0] is defined
+    - item.value.size == "11.00 GB" or item.value.size == "12.00 GB"
+    - item.value.holders | length == 0
+    - item.value.partitions == {}         # ensure no partitiions exist on LUN already  
+
+- name: Fail of length of __150GB_LUN_list != 2
+  fail:
+    msg: "Number of 150GB LUNs to configure filesystems is not 2"
+  when: __150GB_LUN_list | unique | length != __150GB_LUN_list_length | int
+
+- name: Check that statically defined __500GB_LUN value meets requirements
+  fail:
+    msg: "__500GB_LUN value did not meet requirements: [500GB in size,no holders,no partitions] -- Review provided value for __500GB_LUN ." 
+  loop: "{{ lookup('ansible.builtin.dict', ansible_facts.devices) }}"
+  when: 
+    - item.value.links.ids[0] is defined
+    - item.value.links.ids[0] == __500GB_LUN  
+    - item.value.size != "13.00 GB" or item.value.holders | length > 0 or item.value.partitions != {}
+    - _500GB_LUN != ""
+
+- name: Dynamically create variable 500GB_LUN (if not statically defined)
+  set_fact: 
+    __500GB_LUN: "{{ item.value.links.ids[0] }}"
+  loop: "{{ lookup('ansible.builtin.dict', ansible_facts.devices) }}"
+  when: 
+    - item.value.links.ids[0] is defined
+    - item.value.size == "13.00 GB"
+    - item.value.holders | length == 0
+    - item.value.partitions == {}  # ensure no partitiions exist on LUN already
+    - __500GB_LUN ==  ""           # if this value is empty, proceed with dynamic creation
+
+- name: Fail play if _500GB_LUN could not be dynamically defined
+  fail: 
+    msg: "No LUNs could be assigned to __500GB_LUN due to not meeting requirements"
+  when: __500GB_LUN == ""
+
+- name: Check that __500GB_LUN value meets requirements
+  fail:
+    msg: "__500GB_LUN value did not meet requirements: [500GB in size,no holders,no partitions] -- Review provided value for __500GB_LUN ." 
+  loop: "{{ lookup('ansible.builtin.dict', ansible_facts.devices) }}"
+  when: 
+    - item.value.links.ids[0] is defined
+    - item.value.links.ids[0] == __500GB_LUN  
+    - item.value.size != "13.00 GB" or item.value.holders | length > 0 or item.value.partitions != {}
+
+- name: Dynamically create variable 150GB_LUN_1 
+  set_fact: 
+    __150GB_LUN_1: "{{ __150GB_LUN_list[0] }}"
+  when: 
+    - __150GB_LUN_list | unique | length == 2 # we must discover 2 LUN which meet 150GB LUN criteria
+
+- name: Dynamically create variable 150GB_LUN_2 
+  set_fact: 
+    __150GB_LUN_2: "{{ __150GB_LUN_list[1] }}"
+  when: 
+    - __150GB_LUN_list | unique | length == 2 # we must discover 2 LUN which meet 150GB LUN criteria
+
+- name: Append LUN entry to LUN_list - 500G LUN 
+  set_fact:
+    LUN_list: "{{ LUN_list + [__500GB_LUN] + __150GB_LUN_list }}"
+  loop: "{{ lookup('ansible.builtin.dict', ansible_facts.devices) }}"
+  when: 
+    - item.value.links.ids[0] is defined  
+    - item.value.size == "500.00 GB"
+    - item.value.holders | length == 0
+    - item.value.partitions == {}  # ensure no partitiions exist on LUN already
+    - item.value.links.ids[0] == __500GB_LUN # check for LUN name
+
+- fail:
+    msg: "Required amount of acceptable LUNs not found.  Expected {{ total_LUNs_list_length }}.  Found {{ LUN_list | unique | length}}."
+  when: LUN_list | unique | length != total_LUNs_list_length | int
+
+- debug:
+    msg: "LUN1: {{ __500GB_LUN }}  LUN2: {{ __150GB_LUN_list[0] }} LUN3: {{ __150GB_LUN_list[1] }} 150GB_LUN_list: {{ __150GB_LUN_list }}"
+
+- debug:
+    var: LUN_list
+  tags: developing

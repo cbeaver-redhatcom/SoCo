@@ -1,0 +1,19 @@
+---
+- name: Fail play if 150GB LUNs are defined statically and dynamically
+  fail:
+    msg: "LUNs must both be either statically defined or dynamically defined."
+  when: >
+    ( __150GB_LUN_1 != "" and __150GB_LUN_2 == "") or
+    ( __150GB_LUN_1 == "" and __150GB_LUN_2 != "")
+
+- name: Check and prepare role variables (static LUNs)
+  include_tasks: set_vars_static_LUNs.yml
+  when:
+    - __150GB_LUN_1 != ""
+    - __150GB_LUN_2 != ""
+
+- name: Check and prepare role variables (dynamic LUNs)
+  include_tasks: set_vars_dynamic_LUNs.yml
+  when: 
+    - __150GB_LUN_1 == ""
+    - __150GB_LUN_2 == ""

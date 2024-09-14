@@ -1,6 +1,6 @@
 # ha_cluster_modified
 
-An Ansible role for managing High Availability Clustering, customized for Southern Company.  Original READme.md (for ha_cluster) can be found here: https://github.com/linux-system-roles/ha_cluster#readme .  For Southern Company modifications not found in official ha_cluster documentation, search this page for 'SoCo'.  ha_cluster_modified is not an official role published by Red Hat.  It is a customized variation of the ha_cluster role, developed by Cory Beaver for the means of meeting engagement objectives.
+An Ansible role for managing High Availability Clustering, customized for <redacted>.  Original READme.md (for ha_cluster) can be found here: https://github.com/linux-system-roles/ha_cluster#readme .  For <redacted>  modifications not found in official ha_cluster documentation, search this page for 'SoCo'.  ha_cluster_modified is not an official role published by Red Hat.  It is a customized variation of the ha_cluster role, developed by Cory Beaver for the means of meeting engagement objectives.
 
 ## Limitations
 

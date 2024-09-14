@@ -845,7 +845,7 @@ SoCo -- Package to be installed on quorum device (used in tasks/check-and-prepar
 
 ### Defined in `vars/main.yml`
 
-SoCo - The following variables are modified to fit Southern Company needs:
+SoCo - The following variables are modified to fit <redacted> needs:
 
 ```yaml
 __ha_cluster_fullstack_node_packages:
@@ -861,8 +861,8 @@ __ha_cluster_services:
   - corosync
   - corosync-qdevice
   - pacemaker
-  - watchdog # added for Southern Company engagement - SoCo
-  - lvmlockd # added for Southern Company engagement - SoCo
+  - watchdog # added for <redacted> engagement - SoCo
+  - lvmlockd # added for <redacted> engagement - SoCo
 ```
 
 ### Inventory
@@ -1293,9 +1293,9 @@ They are not guides or best practices for configuring a cluster.
     - rhel-system-roles.ha_cluster
 ```
 
-### Southern Company Customizations - SoCo
+### <redacted> Customizations - SoCo
 
-For Southern Company cluster deployments, the workflow of your playbook looks like this:
+For <redacted> cluster deployments, the workflow of your playbook looks like this:
 
 * Deploy the quorum server (play: deploy quorum server)
 * Install filesystem requirements on cluster nodes (play: Set up shared filesystems requirements)
